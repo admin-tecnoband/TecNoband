@@ -1,0 +1,280 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #e4e1bb;
+  --foreground: #19180a;
+  --card: #efceb9;
+  --card-foreground: #3f220f;
+  --popover: #de9e73;
+  --popover-foreground: #190d06;
+  --primary: #bc1427;
+  --primary-foreground: #fad2d6;
+  --secondary: #e05a25;
+  --secondary-foreground: #f7d6c9;
+  --muted: #c9c377;
+  --muted-foreground: #0a0a04;
+  --accent: #f4c6bf;
+  --accent-foreground: #47130c;
+  --destructive: #f6a5ae;
+  --destructive-foreground: #5e0a14;
+  --border: #efceb9;
+  --input: #f7d6c9;
+  --ring: #f17785;
+  --chart-1: #f6a5ae;
+  --chart-2: #efad92;
+  --chart-3: #e98c80;
+  --chart-4: #de9e73;
+  --chart-5: #c9c377;
+  --sidebar: #efceb9;
+  --sidebar-foreground: #3f220f;
+  --sidebar-primary: #e05a25;
+  --sidebar-primary-foreground: #230d05;
+  --sidebar-accent: #df5340;
+  --sidebar-accent-foreground: #180604;
+  --sidebar-border: #f7d6c9;
+  --sidebar-ring: #e8835c;
+  --font-sans: "Manrope", "Manrope Fallback";
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: #19180a;
+  --foreground: #e4e1bb;
+  --card: #3f220f;
+  --card-foreground: #efceb9;
+  --popover: #251409;
+  --popover-foreground: #efceb9;
+  --primary: #e71d36;
+  --primary-foreground: #fad2d6;
+  --secondary: #af4319;
+  --secondary-foreground: #f7d6c9;
+  --muted: #5d5a25;
+  --muted-foreground: #c9c377;
+  --accent: #772014;
+  --accent-foreground: #f4c6bf;
+  --destructive: #bc1427;
+  --destructive-foreground: #fad2d6;
+  --border: #321b0c;
+  --input: #0f0f06;
+  --ring: #ec4a5d;
+  --chart-1: #e71d36;
+  --chart-2: #af4319;
+  --chart-3: #772014;
+  --chart-4: #3f220f;
+  --chart-5: #19180a;
+  --sidebar: #0a0a04;
+  --sidebar-foreground: #c9c377;
+  --sidebar-primary: #84471f;
+  --sidebar-primary-foreground: #efceb9;
+  --sidebar-accent: #b5301f;
+  --sidebar-accent-foreground: #f4c6bf;
+  --sidebar-border: #190d06;
+  --sidebar-ring: #e05a25;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: "Manrope", "Manrope Fallback";
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(231, 29, 54, 0.3), 0 0 40px rgba(231, 29, 54, 0.1);
+  }
+
+  .glow-secondary {
+    box-shadow: 0 0 20px rgba(175, 67, 25, 0.3), 0 0 40px rgba(175, 67, 25, 0.1);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(119, 32, 20, 0.3), 0 0 40px rgba(119, 32, 20, 0.1);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 4px 20px rgba(231, 29, 54, 0.15), 0 8px 40px rgba(231, 29, 54, 0.1);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 10px 40px rgba(231, 29, 54, 0.2), 0 20px 80px rgba(231, 29, 54, 0.15);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(231, 29, 54, 0.5), 0 0 40px rgba(231, 29, 54, 0.3);
+  }
+
+  .border-glow {
+    border-color: rgba(231, 29, 54, 0.5);
+    box-shadow: 0 0 10px rgba(231, 29, 54, 0.3), inset 0 0 10px rgba(231, 29, 54, 0.1);
+  }
+
+  /* Markdown / Prose styles for blog posts */
+  .prose {
+    color: var(--foreground);
+    line-height: 1.65;
+    font-size: 1rem;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    color: var(--foreground);
+    margin-top: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+  }
+
+  .prose h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+  }
+
+  .prose h2 {
+    font-size: 1.875rem;
+    font-weight: 600;
+  }
+
+  .prose h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .prose h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  .prose p {
+    margin: 0.8rem 0 1rem 0;
+    color: var(--muted-foreground);
+  }
+
+  .prose a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin: 0.6rem 0 1rem 1.25rem;
+    color: var(--muted-foreground);
+    list-style-type: disc;
+  }
+
+  .prose li {
+    margin: 0.4rem 0;
+  }
+
+  .prose pre {
+    background: linear-gradient(180deg, rgba(31, 30, 24, 0.9), rgba(24, 23, 17, 0.95));
+    color: var(--card-foreground);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", "Helvetica Neue", monospace;
+    margin: 1rem 0;
+  }
+
+  .prose code {
+    background: rgba(0, 0, 0, 0.06);
+    padding: 0.15rem 0.35rem;
+    border-radius: 0.25rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", "Helvetica Neue", monospace;
+    font-size: 0.92em;
+  }
+
+  .prose blockquote {
+    border-left: 4px solid var(--primary);
+    padding: 0.6rem 1rem;
+    margin: 1rem 0;
+    background: rgba(0, 0, 0, 0.02);
+    color: var(--muted-foreground);
+    border-radius: 0.25rem;
+  }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    overflow: auto;
+  }
+
+  .prose th,
+  .prose td {
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    text-align: left;
+  }
+
+  .prose img {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    display: block;
+  }
+
+  /* Dark-mode overrides for prose */
+  .dark .prose p,
+  .dark .prose li,
+  .dark .prose blockquote {
+    color: var(--muted-foreground);
+  }
+
+  .dark .prose pre {
+    background: linear-gradient(180deg, rgba(9, 9, 6, 0.85), rgba(12, 12, 9, 0.9));
+    color: var(--card-foreground);
+  }
+
+  .dark .prose code {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}

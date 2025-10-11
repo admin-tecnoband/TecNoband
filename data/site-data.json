@@ -1,0 +1,346 @@
+{
+  "pricing": {
+    "hero": {
+      "badge": "Transparent Pricing",
+      "titlePrefix": "Simple,",
+      "titleHighlight": "Flexible Pricing",
+      "subtitle": "Choose the perfect plan for your IoT infrastructure. Scale as you grow with no hidden fees."
+    },
+    "tiers": [
+      {
+        "name": "Starter",
+        "price": "0",
+        "period": "month",
+        "description": "Perfect for developers and small projects",
+        "popular": false,
+        "features": [
+          "Up to 10 devices",
+          "Real-time monitoring",
+          "Basic analytics",
+          "Email support",
+          "1GB data storage",
+          "API access",
+          "7-day data retention"
+        ],
+        "cta": "Get Started Free"
+      },
+      {
+        "name": "Professional",
+        "price": "49",
+        "period": "month",
+        "description": "Ideal for growing businesses and teams",
+        "popular": true,
+        "features": [
+          "All Starter features",
+          "Up to 100 devices",
+          "Advanced analytics & AI insights",
+          "Priority support (24/7)",
+          "50GB data storage",
+          "Custom dashboards",
+          "Webhooks & integrations",
+          "90-day data retention",
+          "Team collaboration (5 users)",
+          "Mobile apps"
+        ],
+        "cta": "Start Free Trial"
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "period": "",
+        "description": "For large-scale deployments and mission-critical applications",
+        "popular": false,
+        "features": [
+          "All Professional features",
+          "Unlimited devices",
+          "Dedicated AI models",
+          "Unlimited data storage",
+          "Custom integrations",
+          "Unlimited data retention",
+          "SLA guarantee (99.9%)",
+          "On-premise deployment option",
+          "Dedicated account manager"
+        ],
+        "cta": "Contact Sales"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I switch plans later?",
+        "answer": "Yes! You can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle."
+      },
+      {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept all major credit cards (Visa, Mastercard, American Express) and bank transfers for enterprise customers."
+      },
+      {
+        "question": "Is there a free trial?",
+        "answer": "Yes! The Professional plan includes a 14-day free trial with full access to all features. No credit card required."
+      },
+      {
+        "question": "What happens if I exceed my device limit?",
+        "answer": "We'll notify you when you're approaching your limit. You can upgrade your plan or we'll help you optimize your device usage."
+      },
+      {
+        "question": "Do you offer discounts for annual billing?",
+        "answer": "Yes! Save 20% when you choose annual billing on Professional and Enterprise plans."
+      }
+    ]
+  },
+  "social": {
+    "twitter": "https://twitter.com/yourhandle",
+    "linkedin": "https://www.linkedin.com/company/yourcompany",
+    "facebook": "https://facebook.com/yourorg",
+    "youtube": "https://www.youtube.com/@yourchannel",
+    "pinterest": "https://www.pinterest.com/yourorg",
+    "crunchbase": "https://www.crunchbase.com/organization/yourcompany",
+    "f6s": "https://www.f6s.com/yourcompany"
+  },
+  "blog": {
+    "hero": {
+      "badge": "Latest Insights",
+      "titlePrefix": "TecNoBand",
+      "titleHighlight": "Blog",
+      "subtitle": "Insights, tutorials, and updates from the world of IoT and AI"
+    },
+    "section": {
+      "badge": "Latest Articles",
+      "heading": "Stay Updated with IoT Insights",
+      "description": "Discover the latest trends, best practices, and technical deep dives from our expert team"
+    }
+  },
+  "features": {
+    "hero": {
+      "badge": "Platform Features",
+      "titlePrefix": "Everything You Need to",
+      "titleHighlight": "Manage IoT at Scale",
+      "subtitle": "Comprehensive tools and features designed for enterprise IoT management with AI-powered insights and real-time monitoring"
+    },
+    "heroCTAs": {
+      "primary": "Get Started Free",
+      "secondary": "View Demo"
+    },
+    "section": {
+      "badge": "Core Platform Features",
+      "heading": "Built for Reliability, Security, and Scale",
+      "description": "Enterprise-grade IoT management platform with comprehensive tools for every aspect of device lifecycle management"
+    },
+    "items": [
+      {
+        "title": "Device Management",
+        "description": "Centralized dashboard to monitor, control, and configure all your IoT devices in real-time with advanced provisioning, remote configuration, and firmware management capabilities.",
+        "pills": [
+          "Bulk Provisioning",
+          "Remote Config",
+          "OTA Updates",
+          "Device Groups"
+        ]
+      },
+      {
+        "title": "AI-Powered Analytics",
+        "description": "Machine learning models that provide actionable insights and predictive maintenance to optimize device performance and reduce downtime.",
+        "pills": []
+      },
+      {
+        "title": "Enterprise Security",
+        "description": "Bank-level encryption and security protocols to protect your entire IoT infrastructure from threats and ensure compliance.",
+        "pills": []
+      },
+      {
+        "title": "Real-time Data",
+        "description": "Live data streaming with sub-second latency for time-critical applications and instant device communication.",
+        "pills": []
+      },
+      {
+        "title": "Smart Alerting",
+        "description": "Intelligent notification system that learns from your patterns and reduces alert fatigue with adaptive AI algorithms.",
+        "pills": ["Critical Alerts", "Performance", "Security"]
+      },
+      {
+        "title": "Access Control",
+        "description": "Granular permissions and role-based access control for secure team collaboration and enhanced security.",
+        "pills": []
+      },
+      {
+        "title": "Cloud Native",
+        "description": "Built on modern cloud infrastructure for unlimited scalability and 99.9% uptime SLA with disaster recovery.",
+        "pills": []
+      },
+      {
+        "title": "Mobile Apps",
+        "description": "Native iOS and Android apps for managing devices on the go with push notifications and offline capabilities.",
+        "pills": []
+      },
+      {
+        "title": "API & Integrations",
+        "description": "Comprehensive REST API and pre-built integrations with popular tools for seamless workflow automation.",
+        "pills": []
+      },
+      {
+        "title": "Data Management",
+        "description": "Powerful tools for storing, querying, and analyzing device data with time-series storage and custom visualization.",
+        "pills": []
+      },
+      {
+        "title": "Monitoring & Logs",
+        "description": "Comprehensive logging and monitoring for troubleshooting and optimization with performance metrics and error tracking.",
+        "pills": []
+      },
+      {
+        "title": "Automation",
+        "description": "Create workflows and automations to reduce manual tasks with rule engines, scheduled tasks, and event triggers.",
+        "pills": []
+      }
+    ]
+  },
+  "home": {
+    "hero": {
+      "badge": "AI-Powered IoT Management",
+      "titlePrefix": "Manage Your IoT Devices with",
+      "titleHighlight": "Intelligent Automation",
+      "subtitle": "TecNoBand provides enterprise-grade IoT management with AI-powered analytics, predictive maintenance, and real-time monitoring for the modern connected world."
+    },
+    "heroCTAs": {
+      "primary": "Get Started Free",
+      "secondary": "Explore Features"
+    },
+    "stats": {
+      "badge": "Trusted Globally",
+      "heading": "The Numbers Speak for Themselves",
+      "description": "Join thousands of satisfied customers managing millions of devices worldwide",
+      "items": [
+        {
+          "value": "10M+",
+          "title": "Devices Managed",
+          "desc": "Across 50+ countries"
+        },
+        {
+          "value": "99.9%",
+          "title": "Uptime SLA",
+          "desc": "Enterprise reliability"
+        },
+        {
+          "value": "500+",
+          "title": "Enterprise Clients",
+          "desc": "Fortune 500 companies"
+        },
+        {
+          "value": "24/7",
+          "title": "Support Available",
+          "desc": "Expert technical team"
+        }
+      ]
+    },
+    "features": {
+      "badge": "Feature-Rich Platform",
+      "heading": "Powerful Features for Modern IoT",
+      "description": "Everything you need to manage, monitor, and optimize your connected devices in one comprehensive platform",
+      "items": [
+        {
+          "title": "Device Management",
+          "description": "Centralized control for all your IoT devices with real-time status monitoring, instant updates, and comprehensive device lifecycle management from provisioning to retirement.",
+          "pills": ["Real-time Monitoring", "Bulk Operations", "Auto-Discovery"]
+        },
+        {
+          "title": "AI Analytics",
+          "description": "Machine learning-powered insights to optimize device performance and predict maintenance needs before issues occur.",
+          "pills": []
+        },
+        {
+          "title": "Enterprise Security",
+          "description": "Bank-level encryption and security protocols to protect your IoT infrastructure from threats and vulnerabilities.",
+          "pills": []
+        },
+        {
+          "title": "Real-time Updates",
+          "description": "Instant notifications and live data streaming from all connected devices across your entire network infrastructure.",
+          "pills": []
+        },
+        {
+          "title": "Smart Alerts",
+          "description": "Intelligent alerting system that learns your patterns and reduces false positives over time with adaptive AI algorithms.",
+          "pills": [
+            "Critical Failures",
+            "Performance Alerts",
+            "Security Threats",
+            "Maintenance"
+          ]
+        },
+        {
+          "title": "Access Control",
+          "description": "Granular permissions and role-based access control for seamless team collaboration and enhanced security.",
+          "pills": []
+        }
+      ]
+    },
+    "testimonials": {
+      "heading": "Trusted by Industry Leaders",
+      "subtitle": "See what our customers say about TecNoBand"
+    },
+    "industry": {
+      "heading": "Built for Every Industry",
+      "description": "From manufacturing to smart cities, TecNoBand powers IoT solutions worldwide"
+    },
+    "cta": {
+      "heading": "Ready to Transform Your IoT Infrastructure?",
+      "description": "Join hundreds of enterprises already using TecNoBand to manage their connected devices. Start your free trial today, no credit card required.",
+      "primary": "Start Free Trial",
+      "secondary": "Talk to Sales"
+    }
+  },
+  "about": {
+    "hero": {
+      "titlePrefix": "Building the Future of",
+      "titleHighlight": "IoT Management",
+      "subtitle": "TecNoBand was founded with a mission to simplify IoT device management through intelligent automation and AI-powered insights."
+    },
+    "story": {
+      "heading": "Our Story",
+      "paragraphs": [
+        "Founded in 2020, TecNoBand emerged from a simple observation: managing IoT devices at scale was becoming increasingly complex and time-consuming. Our founders, experienced IoT engineers and data scientists, saw an opportunity to leverage artificial intelligence to automate and optimize device management.",
+        "Today, we serve over 500 enterprise clients worldwide, managing more than 10 million connected devices across industries including manufacturing, healthcare, smart cities, and logistics. Our platform has evolved to become the industry standard for intelligent IoT management."
+      ]
+    },
+    "values": {
+      "heading": "Our Values",
+      "items": [
+        {
+          "title": "Customer First",
+          "description": "We build products that solve real problems for our customers, listening to feedback and continuously improving."
+        },
+        {
+          "title": "Innovation",
+          "description": "We push the boundaries of what's possible with AI and IoT, staying ahead of industry trends."
+        },
+        {
+          "title": "Collaboration",
+          "description": "We believe in the power of teamwork, both internally and with our partners and customers."
+        },
+        {
+          "title": "Excellence",
+          "description": "We maintain the highest standards in everything we do, from code quality to customer support."
+        }
+      ]
+    },
+    "team": {
+      "heading": "Leadership Team",
+      "members": [
+        {
+          "name": "Dr. Sarah Chen",
+          "role": "CEO & Co-Founder",
+          "bio": "Former IoT architect at leading tech companies with 15+ years of experience."
+        },
+        {
+          "name": "Michael Rodriguez",
+          "role": "CTO & Co-Founder",
+          "bio": "AI researcher and engineer specializing in machine learning for IoT systems."
+        },
+        {
+          "name": "Emily Thompson",
+          "role": "VP of Product",
+          "bio": "Product leader with a track record of building enterprise SaaS platforms."
+        }
+      ]
+    }
+  }
+}

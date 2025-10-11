@@ -1,0 +1,64 @@
+[
+  {
+    "id": "dev-001",
+    "name": "Temperature Sensor A1",
+    "type": "sensor",
+    "status": "online",
+    "location": "Building A - Floor 1",
+    "lastSeen": "2024-01-15T10:30:00Z",
+    "battery": 87,
+    "temperature": 22.5,
+    "humidity": 45
+  },
+  {
+    "id": "dev-002",
+    "name": "Smart Actuator B2",
+    "type": "actuator",
+    "status": "online",
+    "location": "Building B - Floor 2",
+    "lastSeen": "2024-01-15T10:28:00Z",
+    "battery": 92,
+    "state": "active"
+  },
+  {
+    "id": "dev-003",
+    "name": "Gateway Hub C1",
+    "type": "gateway",
+    "status": "online",
+    "location": "Building C - Server Room",
+    "lastSeen": "2024-01-15T10:31:00Z",
+    "connectedDevices": 24,
+    "uptime": "99.8%"
+  },
+  {
+    "id": "dev-004",
+    "name": "Motion Sensor D3",
+    "type": "sensor",
+    "status": "warning",
+    "location": "Building D - Floor 3",
+    "lastSeen": "2024-01-15T09:45:00Z",
+    "battery": 15,
+    "motionDetected": false
+  },
+  {
+    "id": "dev-005",
+    "name": "Smart Lock E1",
+    "type": "actuator",
+    "status": "offline",
+    "location": "Building E - Entrance",
+    "lastSeen": "2024-01-15T08:20:00Z",
+    "battery": 0,
+    "locked": true
+  },
+  {
+    "id": "dev-006",
+    "name": "Air Quality Monitor F2",
+    "type": "sensor",
+    "status": "online",
+    "location": "Building F - Floor 2",
+    "lastSeen": "2024-01-15T10:29:00Z",
+    "battery": 78,
+    "co2": 420,
+    "pm25": 12
+  }
+]
