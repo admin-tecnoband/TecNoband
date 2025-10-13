@@ -660,7 +660,7 @@ export default function HomePage() {
             {/* Floating Cards positioned at corners */}
             <StaggerContainer
               staggerDelay={0.15}
-              className='absolute inset-0 pointer-events-none'
+              className='absolute flex flex-col gap-2 inset-0 pointer-events-none'
             >
               {/* Top-Left Card - Smart Manufacturing */}
               <StaggerItem>
@@ -670,9 +670,9 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05, rotate: 2, y: -8 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className='absolute top-0 left-5 w-80 pointer-events-auto'
+                  className='md:absolute top-0 left-5 md:w-80 pointer-events-auto'
                 >
-                  <Card className='p-10 shadow-glow-lg border-primary/30 bg-background/95 backdrop-blur-md relative overflow-hidden'>
+                  <Card className='p-10 shadow-glow-lg border-primary/30 bg-background/35 md:bg-background/95 backdrop-blur-md relative overflow-hidden'>
                     <div className='absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent' />
                     <div className='flex items-start gap-4 relative z-10'>
                       <div className='h-12 w-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/50'>
@@ -700,9 +700,9 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05, rotate: -2, y: -8 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className='absolute top-0 right-5 w-80 pointer-events-auto'
+                  className='md:absolute top-0 right-5 md:w-80 pointer-events-auto'
                 >
-                  <Card className='p-10 shadow-glow-lg border-secondary/30 bg-background/95 backdrop-blur-md relative overflow-hidden'>
+                  <Card className='p-10 shadow-glow-lg border-secondary/30 bg-background/35 md:bg-background/95 backdrop-blur-md relative overflow-hidden'>
                     <div className='absolute inset-0 bg-gradient-to-bl from-secondary/10 to-transparent' />
                     <div className='flex items-start gap-4 relative z-10'>
                       <div className='h-12 w-12 rounded-lg bg-secondary/20 flex items-center justify-center flex-shrink-0 shadow-lg shadow-secondary/50'>
@@ -730,9 +730,9 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05, rotate: -2, y: -8 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className='absolute bottom-0 left-5 w-80 pointer-events-auto'
+                  className='md:absolute bottom-0 left-5 md:w-80 pointer-events-auto'
                 >
-                  <Card className='p-10 shadow-glow-lg border-accent/30 bg-background/95 backdrop-blur-md relative overflow-hidden'>
+                  <Card className='p-10 shadow-glow-lg border-accent/30 bg-background/35 md:bg-background/95 backdrop-blur-md relative overflow-hidden'>
                     <div className='absolute inset-0 bg-gradient-to-tr from-accent/10 to-transparent' />
                     <div className='flex items-start gap-4 relative z-10'>
                       <div className='h-12 w-12 rounded-lg bg-accent/20 flex items-center justify-center flex-shrink-0 shadow-lg shadow-accent/50'>
@@ -760,9 +760,9 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05, rotate: 2, y: -8 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className='absolute bottom-0 right-5 w-80 pointer-events-auto'
+                  className='md:absolute bottom-0 right-5 md:w-80 pointer-events-auto'
                 >
-                  <Card className='p-10 shadow-glow-lg border-primary/30 bg-background/95 backdrop-blur-md relative overflow-hidden'>
+                  <Card className='p-10 shadow-glow-lg border-primary/30 bg-background/35 md:bg-background/95 backdrop-blur-md relative overflow-hidden'>
                     <div className='absolute inset-0 bg-gradient-to-tl from-primary/10 to-transparent' />
                     <div className='flex items-start gap-4 relative z-10'>
                       <div className='h-12 w-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/50'>

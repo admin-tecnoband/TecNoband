@@ -28,7 +28,10 @@ import {
   StaggerItem,
 } from "@/components/animations/stagger-container";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getSupabaseBrowserClient } from "@/lib/supabase/client";
+import { toast as shadToast } from "@/hooks/use-toast";
+import siteData from "@/data/site-data.json";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -37,14 +40,100 @@ export default function ContactPage() {
     company: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    const siteKey =
+      process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+      (window as any).NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    if (!siteKey) return;
+
+    // load grecaptcha script for v3
+    const id = "recaptcha-v3-script";
+    if (document.getElementById(id)) return;
+
+    const script = document.createElement("script");
+    script.id = id;
+    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+
+    return () => {
+      // keep script for other pages; no cleanup required
+    };
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would send to Supabase or an API
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setIsSubmitting(true);
+
+    try {
+      // Acquire reCAPTCHA token
+      const siteKey =
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+        (window as any).NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+      let token = undefined;
+
+      if (siteKey && (window as any).grecaptcha) {
+        token = await (window as any).grecaptcha.execute(siteKey, {
+          action: "contact",
+        });
+      }
+
+      const supabase = getSupabaseBrowserClient();
+
+      const { data, error } = await supabase.functions.invoke("contact-form", {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          message: formData.message,
+          recaptchaToken: token,
+        },
+      });
+
+      if (error) {
+        console.error("Supabase function error:", error);
+        shadToast({
+          title: "Failed to send message",
+          description: "Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      if (data?.error) {
+        console.error("Function returned error:", data.error);
+        shadToast({
+          title: "Failed to send message",
+          description: String(data.error),
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Success
+      setSubmitted(true);
+      setFormData({ name: "", email: "", company: "", message: "" });
+      shadToast({
+        title: "Message sent",
+        description: data?.message || "We'll get back to you within 24 hours.",
+      });
+
+      // Reset success state after 5 seconds
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      shadToast({
+        title: "An unexpected error occurred",
+        description: "Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -61,21 +150,21 @@ export default function ContactPage() {
         <div className='mx-auto max-w-4xl text-center space-y-8 relative z-10'>
           <FadeIn delay={0.1}>
             <Badge variant='secondary' className='mb-4 shadow-glow'>
-              Contact Us
+              {siteData.contact?.hero?.badge ?? "Contact Us"}
             </Badge>
           </FadeIn>
           <FadeIn delay={0.2}>
             <h1 className='text-4xl md:text-6xl font-bold tracking-tight text-balance'>
-              Get in{" "}
+              {siteData.contact?.hero?.titlePrefix ?? "Get in"}{" "}
               <span className='bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent text-glow'>
-                Touch
+                {siteData.contact?.hero?.titleHighlight ?? "Touch"}
               </span>
             </h1>
           </FadeIn>
           <FadeIn delay={0.3}>
             <p className='text-xl text-muted-foreground text-balance max-w-3xl mx-auto leading-relaxed'>
-              Have questions? We&apos;d love to hear from you. Send us a message
-              and we&apos;ll respond as soon as possible.
+              {siteData.contact?.hero?.subtitle ??
+                "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible."}
             </p>
           </FadeIn>
         </div>
@@ -94,7 +183,6 @@ export default function ContactPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -8 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Card className='border-primary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
@@ -103,11 +191,11 @@ export default function ContactPage() {
 
                   <CardHeader className='relative z-10'>
                     <CardTitle className='text-2xl'>
-                      Send us a message
+                      {siteData.contact?.form?.title ?? "Send us a message"}
                     </CardTitle>
                     <CardDescription>
-                      Fill out the form below and we&apos;ll get back to you
-                      within 24 hours
+                      {siteData.contact?.form?.description ??
+                        "Fill out the form below and we'll get back to you within 24 hours"}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className='relative z-10'>
@@ -116,7 +204,10 @@ export default function ContactPage() {
                         <Label htmlFor='name'>Name</Label>
                         <Input
                           id='name'
-                          placeholder='John Doe'
+                          placeholder={
+                            siteData.contact?.form?.placeholders?.name ??
+                            "John Doe"
+                          }
                           value={formData.name}
                           onChange={(e) =>
                             setFormData({ ...formData, name: e.target.value })
@@ -130,7 +221,10 @@ export default function ContactPage() {
                         <Input
                           id='email'
                           type='email'
-                          placeholder='john@example.com'
+                          placeholder={
+                            siteData.contact?.form?.placeholders?.email ??
+                            "john@example.com"
+                          }
                           value={formData.email}
                           onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
@@ -143,7 +237,10 @@ export default function ContactPage() {
                         <Label htmlFor='company'>Company</Label>
                         <Input
                           id='company'
-                          placeholder='Acme Inc.'
+                          placeholder={
+                            siteData.contact?.form?.placeholders?.company ??
+                            "Acme Inc."
+                          }
                           value={formData.company}
                           onChange={(e) =>
                             setFormData({
@@ -158,7 +255,10 @@ export default function ContactPage() {
                         <Label htmlFor='message'>Message</Label>
                         <Textarea
                           id='message'
-                          placeholder='Tell us about your IoT needs...'
+                          placeholder={
+                            siteData.contact?.form?.placeholders?.message ??
+                            "Tell us about your IoT needs..."
+                          }
                           rows={5}
                           value={formData.message}
                           onChange={(e) =>
@@ -172,16 +272,20 @@ export default function ContactPage() {
                       </div>
 
                       <motion.div
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                        whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                         transition={{ type: "spring", stiffness: 400 }}
                       >
                         <Button
                           type='submit'
                           className='w-full shadow-glow-lg'
-                          disabled={submitted}
+                          disabled={isSubmitting || submitted}
                         >
-                          {submitted ? "Message Sent!" : "Send Message"}
+                          {isSubmitting
+                            ? "Sending..."
+                            : submitted
+                            ? "Message Sent!"
+                            : "Send Message"}
                         </Button>
                       </motion.div>
                     </form>
@@ -215,12 +319,18 @@ export default function ContactPage() {
                         </motion.div>
                         <div className='space-y-1'>
                           <h3 className='font-semibold text-lg'>Email</h3>
-                          <p className='text-sm text-muted-foreground'>
-                            support@tecnoband.com
-                          </p>
-                          <p className='text-sm text-muted-foreground'>
-                            sales@tecnoband.com
-                          </p>
+                          {(
+                            siteData.contact?.info?.emails ?? [
+                              "support@tecnoband.com",
+                            ]
+                          ).map((e: string, i: number) => (
+                            <p
+                              key={i}
+                              className='text-sm text-muted-foreground'
+                            >
+                              {e}
+                            </p>
+                          ))}
                         </div>
                       </div>
                     </CardContent>
@@ -232,7 +342,7 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -4, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
                   <Card className='border-secondary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
                     <div className='absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity' />
@@ -250,10 +360,12 @@ export default function ContactPage() {
                         <div className='space-y-1'>
                           <h3 className='font-semibold text-lg'>Phone</h3>
                           <p className='text-sm text-muted-foreground'>
-                            +1 (555) 123-4567
+                            {siteData.contact?.info?.phone ??
+                              "+1 (555) 123-4567"}
                           </p>
                           <p className='text-sm text-muted-foreground'>
-                            Mon-Fri 9am-6pm EST
+                            {siteData.contact?.info?.hours ??
+                              "Mon-Fri 9am-6pm EST"}
                           </p>
                         </div>
                       </div>
@@ -266,7 +378,7 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -4, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
                   <Card className='border-accent/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
                     <div className='absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity' />
@@ -284,47 +396,15 @@ export default function ContactPage() {
                         <div className='space-y-1'>
                           <h3 className='font-semibold text-lg'>Office</h3>
                           <p className='text-sm text-muted-foreground'>
-                            123 Tech Street
+                            {siteData.contact?.info?.office?.line1 ??
+                              "123 Tech Street"}
                           </p>
                           <p className='text-sm text-muted-foreground'>
-                            San Francisco, CA 94105
+                            {siteData.contact?.info?.office?.city ??
+                              "San Francisco, CA 94105"}
                           </p>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300, delay: 0.3 }}
-                >
-                  <Card className='border-primary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
-                    <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity' />
-                    <CardContent className='pt-6 relative z-10'>
-                      <h3 className='font-semibold text-lg mb-2'>
-                        Enterprise Support
-                      </h3>
-                      <p className='text-sm text-muted-foreground mb-4'>
-                        Need dedicated support? Our enterprise plans include
-                        24/7 phone support, dedicated account managers, and SLA
-                        guarantees.
-                      </p>
-                      <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ type: "spring", stiffness: 400 }}
-                      >
-                        <Button
-                          variant='outline'
-                          className='w-full bg-transparent hover:border-primary transition-all'
-                        >
-                          Learn More
-                        </Button>
-                      </motion.div>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -374,86 +454,109 @@ export default function ContactPage() {
                 <div className='absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent' />
                 <CardContent className='pt-6 pb-6 relative z-10'>
                   <Accordion type='single' collapsible className='w-full'>
-                    <AccordionItem value='item-1'>
-                      <AccordionTrigger className='text-left'>
-                        What is TecNoBand and how does it work?
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        TecNoBand is an AI-powered IoT device management
-                        platform that helps enterprises monitor, control, and
-                        optimize their connected devices at scale. Our platform
-                        uses machine learning to provide predictive maintenance,
-                        real-time analytics, and automated device management.
-                      </AccordionContent>
-                    </AccordionItem>
+                    {(siteData.contact?.faq ?? []).length > 0 ? (
+                      (
+                        siteData.contact.faq as Array<{
+                          question: string;
+                          answer: string;
+                        }>
+                      ).map((f, idx) => (
+                        <AccordionItem key={idx} value={`item-${idx + 1}`}>
+                          <AccordionTrigger className='text-left'>
+                            {f.question}
+                          </AccordionTrigger>
+                          <AccordionContent>{f.answer}</AccordionContent>
+                        </AccordionItem>
+                      ))
+                    ) : (
+                      // fallback static content
+                      <>
+                        <AccordionItem value='item-1'>
+                          <AccordionTrigger className='text-left'>
+                            What is TecNoBand and how does it work?
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            TecNoBand is an AI-powered IoT device management
+                            platform that helps enterprises monitor, control,
+                            and optimize their connected devices at scale. Our
+                            platform uses machine learning to provide predictive
+                            maintenance, real-time analytics, and automated
+                            device management.
+                          </AccordionContent>
+                        </AccordionItem>
 
-                    <AccordionItem value='item-2'>
-                      <AccordionTrigger className='text-left'>
-                        How secure is the TecNoBand platform?
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        Security is our top priority. We employ enterprise-grade
-                        encryption, multi-factor authentication, role-based
-                        access control, and regular security audits. All data is
-                        encrypted in transit and at rest, and we comply with
-                        industry standards including SOC 2, GDPR, and ISO 27001.
-                      </AccordionContent>
-                    </AccordionItem>
+                        <AccordionItem value='item-2'>
+                          <AccordionTrigger className='text-left'>
+                            How secure is the TecNoBand platform?
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            Security is our top priority. We employ
+                            enterprise-grade encryption, multi-factor
+                            authentication, role-based access control, and
+                            regular security audits. All data is encrypted in
+                            transit and at rest, and we comply with industry
+                            standards including SOC 2, GDPR, and ISO 27001.
+                          </AccordionContent>
+                        </AccordionItem>
 
-                    <AccordionItem value='item-3'>
-                      <AccordionTrigger className='text-left'>
-                        What types of IoT devices are supported?
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        TecNoBand supports a wide range of IoT devices including
-                        sensors, actuators, gateways, and edge computing
-                        devices. We offer SDKs for major IoT protocols (MQTT,
-                        CoAP, HTTP) and can integrate with custom devices
-                        through our flexible API framework.
-                      </AccordionContent>
-                    </AccordionItem>
+                        <AccordionItem value='item-3'>
+                          <AccordionTrigger className='text-left'>
+                            What types of IoT devices are supported?
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            TecNoBand supports a wide range of IoT devices
+                            including sensors, actuators, gateways, and edge
+                            computing devices. We offer SDKs for major IoT
+                            protocols (MQTT, CoAP, HTTP) and can integrate with
+                            custom devices through our flexible API framework.
+                          </AccordionContent>
+                        </AccordionItem>
 
-                    <AccordionItem value='item-4'>
-                      <AccordionTrigger className='text-left'>
-                        What kind of support do you offer?
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        We offer multiple support tiers: Basic (email support
-                        with 24-48 hour response), Professional (priority email
-                        and chat with 12-hour response), and Enterprise (24/7
-                        phone, email, and chat support with dedicated account
-                        manager and 1-hour SLA). All plans include access to our
-                        comprehensive documentation and community forums.
-                      </AccordionContent>
-                    </AccordionItem>
+                        <AccordionItem value='item-4'>
+                          <AccordionTrigger className='text-left'>
+                            What kind of support do you offer?
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            We offer multiple support tiers: Basic (email
+                            support with 24-48 hour response), Professional
+                            (priority email and chat with 12-hour response), and
+                            Enterprise (24/7 phone, email, and chat support with
+                            dedicated account manager and 1-hour SLA). All plans
+                            include access to our comprehensive documentation
+                            and community forums.
+                          </AccordionContent>
+                        </AccordionItem>
 
-                    <AccordionItem value='item-5'>
-                      <AccordionTrigger className='text-left'>
-                        Can I try TecNoBand before committing?
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        Yes! We offer a 14-day free trial with full access to
-                        all platform features. No credit card required. You can
-                        connect up to 10 devices and explore all capabilities
-                        including AI analytics, predictive maintenance, and
-                        real-time monitoring. Our team is available to help you
-                        get started.
-                      </AccordionContent>
-                    </AccordionItem>
+                        <AccordionItem value='item-5'>
+                          <AccordionTrigger className='text-left'>
+                            Can I try TecNoBand before committing?
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            Yes! We offer a 14-day free trial with full access
+                            to all platform features. No credit card required.
+                            You can connect up to 10 devices and explore all
+                            capabilities including AI analytics, predictive
+                            maintenance, and real-time monitoring. Our team is
+                            available to help you get started.
+                          </AccordionContent>
+                        </AccordionItem>
 
-                    <AccordionItem value='item-6'>
-                      <AccordionTrigger className='text-left'>
-                        How does pricing work?
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        Our pricing is based on the number of connected devices
-                        and features you need. We offer flexible plans starting
-                        from $99/month for small deployments up to custom
-                        enterprise pricing for large-scale operations. Volume
-                        discounts are available, and we offer annual payment
-                        options with additional savings.
-                      </AccordionContent>
-                    </AccordionItem>
+                        <AccordionItem value='item-6'>
+                          <AccordionTrigger className='text-left'>
+                            How does pricing work?
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            Our pricing is based on the number of connected
+                            devices and features you need. We offer flexible
+                            plans starting from $99/month for small deployments
+                            up to custom enterprise pricing for large-scale
+                            operations. Volume discounts are available, and we
+                            offer annual payment options with additional
+                            savings.
+                          </AccordionContent>
+                        </AccordionItem>
+                      </>
+                    )}
                   </Accordion>
                 </CardContent>
               </Card>
