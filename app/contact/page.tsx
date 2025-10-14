@@ -140,12 +140,17 @@ export default function ContactPage() {
     <MarketingLayout>
       {/* Hero Section */}
       <section className='container py-24 md:py-32 relative overflow-hidden'>
-        <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 blur-3xl' />
+        {/* Background image and animated gradient (homepage-style) */}
         <div className='absolute inset-0 bg-[url("https://picsum.photos/seed/picsum/400/600")] bg-cover bg-center opacity-5' />
         <motion.div
-          className='absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5'
+          className='absolute inset-0 bg-gradient-to-r from-primary/10 to-background bg-[length:200%_100%]'
           animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
-          transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "reverse",
+          }}
         />
         <div className='mx-auto max-w-4xl text-center space-y-8 relative z-10'>
           <FadeIn delay={0.1}>
@@ -183,7 +188,7 @@ export default function ContactPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
               >
                 <Card className='border-primary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
                   <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity' />
@@ -274,7 +279,7 @@ export default function ContactPage() {
                       <motion.div
                         whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                         whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                        transition={{ type: "spring", stiffness: 400 }}
+                        transition={{ type: "spring", stiffness: 250 }}
                       >
                         <Button
                           type='submit'
@@ -302,14 +307,14 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -4, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  transition={{ type: "spring", stiffness: 200 }}
                 >
                   <Card className='border-primary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
                     <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity' />
                     <CardContent className='pt-6 relative z-10'>
                       <div className='flex gap-4'>
                         <motion.div
-                          whileHover={{ rotate: 360, scale: 1.2 }}
+                          whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                           transition={{ duration: 0.6 }}
                           className='flex-shrink-0'
                         >
@@ -342,14 +347,14 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -4, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  transition={{ type: "spring", stiffness: 200 }}
                 >
                   <Card className='border-secondary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
                     <div className='absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity' />
                     <CardContent className='pt-6 relative z-10'>
                       <div className='flex gap-4'>
                         <motion.div
-                          whileHover={{ rotate: 360, scale: 1.2 }}
+                          whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                           transition={{ duration: 0.6 }}
                           className='flex-shrink-0'
                         >
@@ -378,14 +383,14 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -4, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  transition={{ type: "spring", stiffness: 200 }}
                 >
                   <Card className='border-accent/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
                     <div className='absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity' />
                     <CardContent className='pt-6 relative z-10'>
                       <div className='flex gap-4'>
                         <motion.div
-                          whileHover={{ rotate: 360, scale: 1.2 }}
+                          whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                           transition={{ duration: 0.6 }}
                           className='flex-shrink-0'
                         >
@@ -415,9 +420,9 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className='container py-24 bg-card/30 relative overflow-hidden'>
+      <section className='container py-24 relative overflow'>
         <motion.div
-          className='absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5'
+          className='absolute inset-0 bg-gradient-to-br from-background via-accent/5 to-background'
           animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
           transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
         />
@@ -448,7 +453,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: "spring", stiffness: 200 }}
             >
               <Card className='border-primary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
                 <div className='absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent' />
@@ -585,12 +590,11 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ y: -8 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: "spring", stiffness: 200 }}
             >
-              <Card className='border-primary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
+              <Card className='border-primary/30 py-0 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
                 <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity' />
-                <CardContent className='p-0 relative z-10'>
+                <CardContent className='p-4 relative z-10'>
                   <div className='aspect-video w-full overflow-hidden rounded-lg'>
                     <iframe
                       src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0198535619877!2d-122.39914368468213!3d37.79245097975753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807c4e3b9c07%3A0x3b0d8f5b5b5b5b5b!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s'

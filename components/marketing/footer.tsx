@@ -18,7 +18,8 @@ export function Footer() {
           <div className='space-y-4'>
             <Logo />
             <p className='text-sm text-muted-foreground'>
-              AI-powered IoT management platform for the modern enterprise.
+              Take control of your IoT devices with live monitoring, insights,
+              and instant alerts to make informed decisions.
             </p>
             <div className='flex items-center gap-3 mt-3'>
               <a

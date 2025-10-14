@@ -64,7 +64,7 @@ export default function FeaturesPage() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                transition={{ type: "spring", stiffness: 250 }}
               >
                 <Button
                   size='lg'
@@ -80,7 +80,7 @@ export default function FeaturesPage() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                transition={{ type: "spring", stiffness: 250 }}
               >
                 <Button
                   size='lg'
@@ -99,13 +99,12 @@ export default function FeaturesPage() {
       </section>
 
       {/* Core Features */}
-      <section className='container py-24 bg-card/30 relative overflow-hidden'>
-        <motion.div
-          className='absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5'
-          animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+      <section className='container py-24 relative'>
+        {/* <motion.div
+          className='absolute inset-0 bg-gradient-to-b from-secondary/10 via-transparent to-secondary/10 bg-[length:200%_100%] bg-no-repeat'
+          animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
           transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
-        />
-        <div className='absolute inset-0  bg-center opacity-5' />
+        /> */}
 
         {/* Decorative Elements */}
         <div className='absolute top-10 left-10 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-pulse' />
@@ -159,15 +158,15 @@ export default function FeaturesPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     whileHover={{ y: -8, scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    transition={{ type: "spring", stiffness: 200 }}
                     className={containerClass}
                   >
-                    <Card className='h-full p-8 hover:shadow-glow-lg transition-all border-primary/30 relative overflow-hidden bg-background/80 backdrop-blur-sm'>
+                    <Card className='h-full p-8 hover:shadow-glow-lg transition-all border-primary/30 relative overflow-hidden bg-transparent'>
                       <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity' />
                       <div className='absolute inset-0  bg-center opacity-5' />
 
                       <motion.div
-                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                         transition={{ duration: 0.8 }}
                         className='h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-6 shadow-lg shadow-primary/30 relative z-10'
                       >
@@ -206,8 +205,8 @@ export default function FeaturesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className='container py-24 bg-card/30 relative overflow-hidden'>
-        <div className='absolute inset-0 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 blur-3xl' />
+      <section className='container py-24 relative overflow-hidden'>
+        <div className='absolute inset-0 bg-radial from-primary/20 to-transparent to-60% blur-3xl' />
         <FadeIn>
           <div className='mx-auto max-w-4xl text-center space-y-8 relative z-10'>
             <h2 className='text-3xl md:text-5xl font-bold'>
@@ -222,7 +221,7 @@ export default function FeaturesPage() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                transition={{ type: "spring", stiffness: 250 }}
               >
                 <Button
                   size='lg'
@@ -237,7 +236,7 @@ export default function FeaturesPage() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                transition={{ type: "spring", stiffness: 250 }}
               >
                 <Button
                   size='lg'

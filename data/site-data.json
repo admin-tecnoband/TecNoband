@@ -2,14 +2,14 @@
   "pricing": {
     "hero": {
       "badge": "Transparent Pricing",
-      "titlePrefix": "Simple,",
-      "titleHighlight": "Flexible Pricing",
+      "titlePrefix": "Your Control under",
+      "titleHighlight": "our IOT Plans",
       "subtitle": "Choose the perfect plan for your IoT infrastructure. Scale as you grow with no hidden fees."
     },
     "tiers": [
       {
-        "name": "Starter",
-        "price": "0",
+        "name": "Link",
+        "price": "79",
         "period": "month",
         "description": "Perfect for developers and small projects",
         "popular": false,
@@ -25,13 +25,13 @@
         "cta": "Get Started Free"
       },
       {
-        "name": "Professional",
-        "price": "49",
+        "name": "Command",
+        "price": "139",
         "period": "month",
         "description": "Ideal for growing businesses and teams",
         "popular": true,
         "features": [
-          "All Starter features",
+          "All Link features",
           "Up to 100 devices",
           "Advanced analytics & AI insights",
           "Priority support (24/7)",
@@ -45,13 +45,13 @@
         "cta": "Start Free Trial"
       },
       {
-        "name": "Enterprise",
+        "name": "Dominion",
         "price": "Custom",
         "period": "",
         "description": "For large-scale deployments and mission-critical applications",
         "popular": false,
         "features": [
-          "All Professional features",
+          "All Command features",
           "Unlimited devices",
           "Dedicated AI models",
           "Unlimited data storage",
@@ -99,8 +99,8 @@
   "blog": {
     "hero": {
       "badge": "Latest Insights",
-      "titlePrefix": "TecNoBand",
-      "titleHighlight": "Blog",
+      "titlePrefix": "The Innovation Log of",
+      "titleHighlight": "TecNoBand",
       "subtitle": "Insights, tutorials, and updates from the world of IoT and AI"
     },
     "section": {
@@ -128,7 +128,7 @@
     "items": [
       {
         "title": "Device Management",
-        "description": "Centralized dashboard to monitor, control, and configure all your IoT devices in real-time with advanced provisioning, remote configuration, and firmware management capabilities.",
+        "description": "Manage all your IoT devices in one place with live status monitoring, instant updates, and full lifecycle management.",
         "pills": [
           "Bulk Provisioning",
           "Remote Config",
@@ -137,8 +137,8 @@
         ]
       },
       {
-        "title": "AI-Powered Analytics",
-        "description": "Machine learning models that provide actionable insights and predictive maintenance to optimize device performance and reduce downtime.",
+        "title": "AI Analytics",
+        "description": "Machine learning-powered insights to optimize device performance and predict maintenance needs before issues occur.",
         "pills": []
       },
       {
@@ -196,9 +196,9 @@
   "home": {
     "hero": {
       "badge": "AI-Powered IoT Management",
-      "titlePrefix": "Manage Your IoT Devices with",
-      "titleHighlight": "Intelligent Automation",
-      "subtitle": "TecNoBand provides enterprise-grade IoT management with AI-powered analytics, predictive maintenance, and real-time monitoring for the modern connected world."
+      "titlePrefix": "Ultimate Command Control for Your",
+      "titleHighlight": "Connected Infrastructure",
+      "subtitle": "Monitor, analyze, and optimize every device in real time with seamless intelligence at your fingertips."
     },
     "heroCTAs": {
       "primary": "Get Started Free",
@@ -206,7 +206,7 @@
     },
     "stats": {
       "badge": "Trusted Globally",
-      "heading": "The Numbers Speak for Themselves",
+      "heading": "Data That Defines Our Success",
       "description": "Join thousands of satisfied customers managing millions of devices worldwide",
       "items": [
         {
@@ -233,8 +233,8 @@
     },
     "features": {
       "badge": "Feature-Rich Platform",
-      "heading": "Powerful Features for Modern IoT",
-      "description": "Everything you need to manage, monitor, and optimize your connected devices in one comprehensive platform",
+      "heading": "Designed for Diverse IoT Frontiers",
+      "description": "Manage all your IoT devices in one place with live status monitoring, instant updates, and full lifecycle management.",
       "items": [
         {
           "title": "Device Management",
@@ -274,13 +274,43 @@
       ]
     },
     "testimonials": {
-      "heading": "Trusted by Industry Leaders",
+      "heading": "Trusted by IoT Pioneers",
       "subtitle": "See what our customers say about TecNoBand"
     },
     "industry": {
-      "heading": "Built for Every Industry",
-      "description": "From manufacturing to smart cities, TecNoBand powers IoT solutions worldwide"
+      "heading": "Designed for Diverse IoT Frontiers",
+      "description": "TecNoBand unifies IoT management for manufacturing, logistics, energy, and beyond"
     },
+    "floatingCards": [
+      {
+        "title": "Cognitive Production",
+        "description": "Monitor production lines, track equipment health, and optimize operations with real-time analytics",
+        "icon": "Globe",
+        "variant": "primary",
+        "positionClass": "md:absolute top-0 left-5 md:w-80 pointer-events-auto"
+      },
+      {
+        "title": "Connected Infrastructure",
+        "description": "Manage HVAC, lighting, and security systems for energy efficiency and occupant comfort",
+        "icon": "Users",
+        "variant": "secondary",
+        "positionClass": "md:absolute top-0 right-5 md:w-80 pointer-events-auto"
+      },
+      {
+        "title": "Agriculture Tech",
+        "description": "Precision farming with advanced soil sensors, weather stations, and automated irrigation systems",
+        "icon": "TrendingUp",
+        "variant": "accent",
+        "positionClass": "md:absolute bottom-0 left-5 md:w-80 pointer-events-auto"
+      },
+      {
+        "title": "Healthcare IoT",
+        "description": "Patient monitoring, asset tracking, and advanced facility controls for every medical facility",
+        "icon": "Shield",
+        "variant": "primary",
+        "positionClass": "md:absolute bottom-0 right-5 md:w-80 pointer-events-auto"
+      }
+    ],
     "cta": {
       "heading": "Ready to Transform Your IoT Infrastructure?",
       "description": "Join hundreds of enterprises already using TecNoBand to manage their connected devices. Start your free trial today, no credit card required.",
@@ -323,21 +353,21 @@
       ]
     },
     "team": {
-      "heading": "Leadership Team",
+      "heading": "IoT Visionaries",
       "members": [
         {
-          "name": "Dr. Sarah Chen",
-          "role": "CEO & Co-Founder",
+          "name": "Dr. Amina Rahman",
+          "role": "Head of Innovation & Co-Founder",
           "bio": "Former IoT architect at leading tech companies with 15+ years of experience."
         },
         {
-          "name": "Michael Rodriguez",
-          "role": "CTO & Co-Founder",
+          "name": "Lars Jensen",
+          "role": "Chief Technology Strategist & Co-Founder",
           "bio": "AI researcher and engineer specializing in machine learning for IoT systems."
         },
         {
-          "name": "Emily Thompson",
-          "role": "VP of Product",
+          "name": "Isabella Moreno",
+          "role": "VP of Product Strategy",
           "bio": "Product leader with a track record of building enterprise SaaS platforms."
         }
       ]
@@ -346,8 +376,8 @@
   "contact": {
     "hero": {
       "badge": "Contact Us",
-      "titlePrefix": "Get in",
-      "titleHighlight": "Touch",
+      "titlePrefix": "Connect & Collaborate",
+      "titleHighlight": "Collaborate",
       "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible."
     },
     "form": {

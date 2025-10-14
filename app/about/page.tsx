@@ -15,12 +15,17 @@ export default function AboutPage() {
     <MarketingLayout>
       {/* Hero Section */}
       <section className='container py-24 md:py-32 relative overflow-hidden'>
-        <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 blur-3xl' />
+        {/* Background image + animated gradient like homepage */}
         <div className='absolute inset-0 bg-[url("https://picsum.photos/seed/picsum/400/600")] bg-cover bg-center opacity-5' />
         <motion.div
-          className='absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5'
+          className='absolute inset-0 bg-gradient-to-r from-primary/10 to-background bg-[length:200%_100%]'
           animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
-          transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
+          transition={{
+            duration: 16,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "reverse",
+          }}
         />
         <div className='mx-auto max-w-4xl text-center space-y-8 relative z-10'>
           <FadeIn delay={0.1}>
@@ -40,7 +45,7 @@ export default function AboutPage() {
       </section>
 
       {/* Story Section */}
-      <section className='container py-24'>
+      <section className='container py-44'>
         <div className='mx-auto max-w-4xl space-y-8'>
           <FadeIn delay={0.1}>
             <h2 className='text-3xl md:text-4xl font-bold'>
@@ -67,7 +72,17 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className='container py-24 bg-card/30'>
+      <section className='container relative py-24'>
+        <motion.div
+          className='absolute inset-0 bg-radial from-primary/10 to-transparent to-60% bg-[length:100%_100%] bg-[position:50%_50%]'
+          animate={{ backgroundSize: ["100% 100%", "200% 200%"] }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "reverse",
+          }}
+        />
         <div className='mx-auto max-w-6xl'>
           <FadeIn delay={0.1}>
             <h2 className='text-3xl md:text-4xl font-bold text-center mb-16'>
@@ -85,7 +100,7 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  transition={{ type: "spring", stiffness: 200 }}
                 >
                   <Card
                     className={`h-full hover:shadow-glow-lg transition-all ${
@@ -102,7 +117,7 @@ export default function AboutPage() {
                     <CardContent className='pt-8 pb-8 relative z-10'>
                       <div className='flex gap-6'>
                         <motion.div
-                          whileHover={{ rotate: 360, scale: 1.1 }}
+                          whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                           transition={{ duration: 0.8 }}
                           className='flex-shrink-0 h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center shadow-lg shadow-primary/30'
                         >
@@ -154,7 +169,7 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 + i * 50 }}
+                  transition={{ type: "spring", stiffness: 200 + i * 50 }}
                 >
                   <Card
                     className={`hover:shadow-glow-lg transition-all ${

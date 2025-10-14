@@ -25,10 +25,9 @@ export default function BlogPage() {
     <MarketingLayout>
       {/* Hero Section */}
       <section className='container py-24 md:py-32 relative overflow-hidden'>
-        <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 blur-3xl' />
         <div className='absolute inset-0 bg-[url("https://picsum.photos/seed/picsum/400/600")] bg-cover bg-center opacity-5' />
         <motion.div
-          className='absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5'
+          className='absolute inset-0 bg-gradient-to-r from-primary/10 to-background bg-[length:200%_100%]'
           animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
           transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
         />
@@ -55,17 +54,10 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className='container py-24 bg-card/30 relative overflow-hidden'>
-        <motion.div
-          className='absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5'
-          animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
-          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
-        />
-        <div className='absolute inset-0  bg-center opacity-5' />
-
+      <section className='container py-24 relative '>
         {/* Decorative Elements */}
         <div className='absolute top-10 left-10 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-pulse' />
-        <div className='absolute bottom-10 right-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse' />
+        <div className='absolute bottom-0 right-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse' />
 
         <div className='mx-auto max-w-6xl relative z-10'>
           <FadeIn delay={0.1}>
@@ -93,11 +85,11 @@ export default function BlogPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  transition={{ type: "spring", stiffness: 100 }}
                   className='group'
                 >
                   <Link href={`/blog/${post.slug}`}>
-                    <Card className='h-full hover:shadow-glow-lg transition-all border-primary/30 relative overflow-hidden bg-background/80 backdrop-blur-sm'>
+                    <Card className='h-full hover:shadow-glow-lg transition-all border-primary/30 relative overflow-hidden bg-transparent'>
                       {/* Gradient Overlay */}
                       <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity' />
 
@@ -119,7 +111,7 @@ export default function BlogPage() {
                         <div className='flex items-center gap-2 mb-3'>
                           <motion.div
                             whileHover={{ scale: 1.05 }}
-                            transition={{ type: "spring", stiffness: 400 }}
+                            transition={{ type: "spring", stiffness: 250 }}
                           >
                             <Badge
                               variant='secondary'
@@ -154,7 +146,7 @@ export default function BlogPage() {
                           </span>
                           <motion.div
                             whileHover={{ x: 4 }}
-                            transition={{ type: "spring", stiffness: 400 }}
+                            transition={{ type: "spring", stiffness: 250 }}
                           >
                             <ArrowRight className='h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors' />
                           </motion.div>

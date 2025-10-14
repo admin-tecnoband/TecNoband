@@ -36,23 +36,23 @@ export default function HomePage() {
   const testimonials = [
     {
       quote:
-        "TecNoBand transformed our manufacturing operations. We've seen a 40% reduction in downtime and significant cost savings.",
-      author: "Sarah Chen",
-      role: "CTO, TechCorp Industries",
+        "The real-time monitoring and predictive insights have completely improved our production efficiency. We can now anticipate equipment issues and reduce downtime significantly.",
+      author: "Matteo Rossi",
+      role: "Operations Manager, Apex Industries",
       gradient: "from-primary to-secondary",
     },
     {
       quote:
-        "The AI-powered analytics have been game-changing. We can predict issues before they happen and optimize our entire fleet.",
-      author: "Michael Rodriguez",
-      role: "VP Operations, SmartCity Solutions",
+        "Managing medical devices and patient monitoring systems has become effortless. The integrated controls help our team stay proactive and maintain high operational standards.",
+      author: "Sofia Alvarez",
+      role: "CTO, Horizon Medical",
       gradient: "from-secondary to-accent",
     },
     {
       quote:
-        "Best IoT platform we've used. The interface is intuitive, and the support team is incredibly responsive and helpful.",
-      author: "Emily Watson",
-      role: "Director of IT, AgriTech Global",
+        "From energy consumption to environmental sensors, we now have actionable insights across all city systems. This has helped us optimize resources and improve overall efficiency.",
+      author: "Kwame Mensah",
+      role: "Director, Metro City Council",
       gradient: "from-accent to-primary",
     },
   ];
@@ -70,11 +70,10 @@ export default function HomePage() {
   return (
     <MarketingLayout>
       {/* Hero Section */}
-      <section className='container py-24 md:py-32 relative overflow-hidden'>
-        <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 blur-3xl' />
+      <section className='container py-24 md:py-32 relative overflow-visible'>
         <div className='absolute inset-0 bg-[url("https://picsum.photos/seed/picsum/400/600")] bg-cover bg-center opacity-5' />
         <motion.div
-          className='absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5'
+          className='absolute inset-0 bg-gradient-to-r from-transparent via-accent/50 to-transparent bg-[length:200%_100%]'
           animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
           transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
         />
@@ -102,7 +101,7 @@ export default function HomePage() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                transition={{ type: "spring", stiffness: 250 }}
               >
                 <Button
                   size='lg'
@@ -118,7 +117,7 @@ export default function HomePage() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                transition={{ type: "spring", stiffness: 250 }}
               >
                 <Button
                   size='lg'
@@ -137,17 +136,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section - Redesigned */}
-      <section className='container py-24 relative overflow-hidden'>
-        {/* Animated Background */}
-        <motion.div
-          className='absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10'
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
-        <div className='absolute inset-0  bg-center opacity-5' />
-
+      <section className='container py-24 relative overflow-visible'>
         {/* Decorative Elements */}
         <div className='absolute top-10 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse' />
         <div className='absolute bottom-10 right-10 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse' />
@@ -175,7 +164,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 className='relative group'
               >
                 <Card className='p-8 text-center border-primary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
@@ -187,7 +176,7 @@ export default function HomePage() {
 
                   {/* Icon */}
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.2 }}
+                    whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.6 }}
                     className='h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/30 relative z-10'
                   >
@@ -223,7 +212,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 className='relative group'
               >
                 <Card className='p-8 text-center border-secondary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
@@ -231,7 +220,7 @@ export default function HomePage() {
                   <div className='absolute inset-0 bg-center opacity-5' />
 
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.2 }}
+                    whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.6 }}
                     className='h-16 w-16 rounded-2xl bg-secondary/10 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-secondary/30 relative z-10'
                   >
@@ -266,7 +255,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 className='relative group'
               >
                 <Card className='p-8 text-center border-secondary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
@@ -274,7 +263,7 @@ export default function HomePage() {
                   <div className='absolute inset-0  bg-center opacity-5' />
 
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.2 }}
+                    whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.6 }}
                     className='h-16 w-16 rounded-2xl bg-secondary/10 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-secondary/30 relative z-10'
                   >
@@ -309,7 +298,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 className='relative group'
               >
                 <Card className='p-8 text-center border-primary/30 shadow-glow hover:shadow-glow-lg transition-all relative overflow-hidden bg-background/80 backdrop-blur-sm'>
@@ -317,7 +306,7 @@ export default function HomePage() {
                   <div className='absolute inset-0  bg-center opacity-5' />
 
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.2 }}
+                    whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.6 }}
                     className='h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/30 relative z-10'
                   >
@@ -351,11 +340,10 @@ export default function HomePage() {
       {/* Features Grid - Redesigned */}
       <section className='container py-24 bg-card/30 relative overflow-hidden'>
         <motion.div
-          className='absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5'
+          className='absolute inset-0 bg-no-repeat bg-gradient-to-br from-background via-primary/5 to-background bg-[length:200%_100%]'
           animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
-          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
+          transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
         />
-        <div className='absolute inset-0  bg-center opacity-5' />
 
         {/* Decorative Gradient Orbs */}
         <div className='absolute top-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse' />
@@ -385,7 +373,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 className='lg:col-span-2 lg:row-span-1 group'
               >
                 <Card className='h-full p-8 hover:shadow-glow-lg transition-all border-primary/30 relative overflow-hidden bg-background/80 backdrop-blur-sm'>
@@ -397,7 +385,7 @@ export default function HomePage() {
 
                   {/* Animated Icon Container */}
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
                     className='h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-6 shadow-lg shadow-primary/30 relative z-10'
                   >
@@ -436,7 +424,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 className='group'
               >
                 <Card className='h-full p-8 hover:shadow-glow-lg transition-all border-secondary/30 relative overflow-hidden bg-background/80 backdrop-blur-sm'>
@@ -444,7 +432,7 @@ export default function HomePage() {
                   <div className='absolute inset-0  bg-center opacity-5' />
 
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
                     className='h-16 w-16 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center mb-6 shadow-lg shadow-secondary/30 relative z-10'
                   >
@@ -470,7 +458,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 className='group'
               >
                 <Card className='h-full p-8 hover:shadow-glow-lg transition-all border-accent/30 relative overflow-hidden bg-background/80 backdrop-blur-sm'>
@@ -478,7 +466,7 @@ export default function HomePage() {
                   <div className='absolute inset-0  bg-center opacity-5' />
 
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
                     className='h-16 w-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-6 shadow-lg shadow-accent/30 relative z-10'
                   >
@@ -504,7 +492,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 className='group'
               >
                 <Card className='h-full p-8 hover:shadow-glow-lg transition-all border-primary/30 relative overflow-hidden bg-background/80 backdrop-blur-sm'>
@@ -512,7 +500,7 @@ export default function HomePage() {
                   <div className='absolute inset-0  bg-center opacity-5' />
 
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
                     className='h-16 w-16 rounded-2xl bg-gradient-to-br from-chart-2/20 to-chart-2/5 flex items-center justify-center mb-6 shadow-lg shadow-primary/30 relative z-10'
                   >
@@ -538,7 +526,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 className='group'
               >
                 <Card className='h-full p-8 hover:shadow-glow-lg transition-all border-destructive/30 relative overflow-hidden bg-background/80 backdrop-blur-sm'>
@@ -546,7 +534,7 @@ export default function HomePage() {
                   <div className='absolute inset-0  bg-center opacity-5' />
 
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
                     className='h-16 w-16 rounded-2xl bg-gradient-to-br from-destructive/20 to-destructive/5 flex items-center justify-center mb-6 shadow-lg shadow-destructive/30 relative z-10'
                   >
@@ -585,7 +573,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 className='group'
               >
                 <Card className='h-full p-8 hover:shadow-glow-lg transition-all border-accent/30 relative overflow-hidden bg-background/80 backdrop-blur-sm'>
@@ -593,7 +581,7 @@ export default function HomePage() {
                   <div className='absolute inset-0  bg-center opacity-5' />
 
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
                     className='h-16 w-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-6 shadow-lg shadow-accent/30 relative z-10'
                   >
@@ -616,12 +604,6 @@ export default function HomePage() {
       </section>
 
       <section className='container py-24 relative overflow-hidden'>
-        <motion.div
-          className='absolute inset-0 bg-gradient-to-tl from-secondary/5 via-primary/5 to-accent/5'
-          animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
-          transition={{ duration: 15, repeat: Infinity, repeatType: "reverse" }}
-        />
-        <div className='absolute inset-0  bg-center opacity-5' />
         <div className='mx-auto max-w-7xl relative z-10'>
           <FadeIn delay={0.1}>
             <div className='text-center space-y-4 mb-16'>
@@ -657,130 +639,81 @@ export default function HomePage() {
               <div className='absolute inset-0 backdrop-blur-[2px]' />
             </motion.div>
 
-            {/* Floating Cards positioned at corners */}
+            {/* Floating Cards positioned at corners - rendered from siteData.home.floatingCards */}
             <StaggerContainer
               staggerDelay={0.15}
               className='absolute flex flex-col gap-2 inset-0 pointer-events-none'
             >
-              {/* Top-Left Card - Smart Manufacturing */}
-              <StaggerItem>
-                <motion.div
-                  initial={{ opacity: 0, x: -50, y: -50 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, rotate: 2, y: -8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className='md:absolute top-0 left-5 md:w-80 pointer-events-auto'
-                >
-                  <Card className='p-10 shadow-glow-lg border-primary/30 bg-background/35 md:bg-background/95 backdrop-blur-md relative overflow-hidden'>
-                    <div className='absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent' />
-                    <div className='flex items-start gap-4 relative z-10'>
-                      <div className='h-12 w-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/50'>
-                        <Globe className='h-6 w-6 text-primary' />
-                      </div>
-                      <div>
-                        <h3 className='text-xl font-bold mb-2'>
-                          Smart Manufacturing
-                        </h3>
-                        <p className='text-muted-foreground text-sm'>
-                          Monitor production lines, track equipment health, and
-                          optimize operations with real-time data analytics
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              </StaggerItem>
+              {siteData.home.floatingCards?.map((card, idx) => {
+                const Icon =
+                  {
+                    Globe,
+                    Users,
+                    TrendingUp,
+                    Shield,
+                  }[card.icon] || Globe;
 
-              {/* Top-Right Card - Smart Buildings */}
-              <StaggerItem>
-                <motion.div
-                  initial={{ opacity: 0, x: 50, y: -50 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, rotate: -2, y: -8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className='md:absolute top-0 right-5 md:w-80 pointer-events-auto'
-                >
-                  <Card className='p-10 shadow-glow-lg border-secondary/30 bg-background/35 md:bg-background/95 backdrop-blur-md relative overflow-hidden'>
-                    <div className='absolute inset-0 bg-gradient-to-bl from-secondary/10 to-transparent' />
-                    <div className='flex items-start gap-4 relative z-10'>
-                      <div className='h-12 w-12 rounded-lg bg-secondary/20 flex items-center justify-center flex-shrink-0 shadow-lg shadow-secondary/50'>
-                        <Users className='h-6 w-6 text-secondary' />
-                      </div>
-                      <div>
-                        <h3 className='text-xl font-bold mb-2'>
-                          Smart Buildings
-                        </h3>
-                        <p className='text-muted-foreground text-sm'>
-                          Manage HVAC, lighting, and security systems for energy
-                          efficiency and occupant comfort
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              </StaggerItem>
+                const variantClasses = {
+                  primary:
+                    "border-primary/30 bg-background/35 md:bg-background/95 shadow-glow-lg shadow-primary/50",
+                  secondary:
+                    "border-secondary/30 bg-background/35 md:bg-background/95 shadow-glow-lg shadow-secondary/50",
+                  accent:
+                    "border-accent/30 bg-background/35 md:bg-background/95 shadow-glow-lg shadow-accent/50",
+                }[card.variant || "primary"];
 
-              {/* Bottom-Left Card - Agriculture Tech */}
-              <StaggerItem>
-                <motion.div
-                  initial={{ opacity: 0, x: -50, y: 50 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, rotate: -2, y: -8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className='md:absolute bottom-0 left-5 md:w-80 pointer-events-auto'
-                >
-                  <Card className='p-10 shadow-glow-lg border-accent/30 bg-background/35 md:bg-background/95 backdrop-blur-md relative overflow-hidden'>
-                    <div className='absolute inset-0 bg-gradient-to-tr from-accent/10 to-transparent' />
-                    <div className='flex items-start gap-4 relative z-10'>
-                      <div className='h-12 w-12 rounded-lg bg-accent/20 flex items-center justify-center flex-shrink-0 shadow-lg shadow-accent/50'>
-                        <TrendingUp className='h-6 w-6 text-secondary' />
-                      </div>
-                      <div>
-                        <h3 className='text-xl font-bold mb-2'>
-                          Agriculture Tech
-                        </h3>
-                        <p className='text-muted-foreground text-sm'>
-                          Precision farming with soil sensors, weather stations,
-                          and automated irrigation systems
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              </StaggerItem>
-
-              {/* Bottom-Right Card - Healthcare IoT */}
-              <StaggerItem>
-                <motion.div
-                  initial={{ opacity: 0, x: 50, y: 50 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, rotate: 2, y: -8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className='md:absolute bottom-0 right-5 md:w-80 pointer-events-auto'
-                >
-                  <Card className='p-10 shadow-glow-lg border-primary/30 bg-background/35 md:bg-background/95 backdrop-blur-md relative overflow-hidden'>
-                    <div className='absolute inset-0 bg-gradient-to-tl from-primary/10 to-transparent' />
-                    <div className='flex items-start gap-4 relative z-10'>
-                      <div className='h-12 w-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/50'>
-                        <Shield className='h-6 w-6 text-primary' />
-                      </div>
-                      <div>
-                        <h3 className='text-xl font-bold mb-2'>
-                          Healthcare IoT
-                        </h3>
-                        <p className='text-muted-foreground text-sm'>
-                          Patient monitoring, asset tracking, and environmental
-                          controls for medical facilities
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              </StaggerItem>
+                return (
+                  <StaggerItem key={idx}>
+                    <motion.div
+                      initial={{
+                        opacity: 0,
+                        x: idx % 2 === 0 ? -50 : 50,
+                        y: idx < 2 ? -50 : 50,
+                      }}
+                      whileInView={{ opacity: 1, x: 0, y: 0 }}
+                      viewport={{ once: true }}
+                      whileHover={{
+                        scale: 1.05,
+                        rotate: idx % 2 === 0 ? 2 : -2,
+                        y: -8,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 20,
+                      }}
+                      className={card.positionClass}
+                    >
+                      <Card
+                        className={`p-10 ${variantClasses} backdrop-blur-md relative overflow-hidden`}
+                      >
+                        <div className='absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent' />
+                        <div className='flex items-start gap-4 relative z-10'>
+                          <div
+                            className={`h-12 w-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                              card.variant === "secondary"
+                                ? "bg-secondary/20 shadow-secondary/50"
+                                : card.variant === "accent"
+                                ? "bg-accent/20 shadow-accent/50"
+                                : "bg-primary/20 shadow-primary/50"
+                            }`}
+                          >
+                            <Icon className='h-6 w-6 text-current' />
+                          </div>
+                          <div>
+                            <h3 className='text-xl font-bold mb-2'>
+                              {card.title}
+                            </h3>
+                            <p className='text-muted-foreground text-sm'>
+                              {card.description}
+                            </p>
+                          </div>
+                        </div>
+                      </Card>
+                    </motion.div>
+                  </StaggerItem>
+                );
+              })}
             </StaggerContainer>
           </div>
         </div>
@@ -925,12 +858,6 @@ export default function HomePage() {
       </section>
 
       <section className='container py-24 relative overflow-hidden'>
-        <motion.div
-          className='absolute inset-0 bg-gradient-to-bl from-primary/5 via-secondary/5 to-accent/5'
-          animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
-          transition={{ duration: 18, repeat: Infinity, repeatType: "reverse" }}
-        />
-        <div className='absolute inset-0  bg-center opacity-5' />
         <div className='mx-auto max-w-6xl relative z-10'>
           <FadeIn delay={0.1}>
             <div className='text-center space-y-4 mb-16'>
@@ -949,7 +876,7 @@ export default function HomePage() {
               <motion.div
                 whileHover={{ scale: 1.02, rotate: 1 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
               >
                 <Card className='p-8 hover:shadow-glow-lg transition-all border-primary/20 relative overflow-hidden'>
                   <div className='absolute inset-0  bg-center opacity-5' />
@@ -970,7 +897,7 @@ export default function HomePage() {
               <motion.div
                 whileHover={{ scale: 1.02, rotate: -1 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
               >
                 <Card className='p-8 hover:shadow-glow-lg transition-all border-secondary/20 relative overflow-hidden'>
                   <div className='absolute inset-0  bg-center opacity-5' />
@@ -991,7 +918,7 @@ export default function HomePage() {
               <motion.div
                 whileHover={{ scale: 1.02, rotate: 1 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
               >
                 <Card className='p-8 hover:shadow-glow-lg transition-all border-accent/20 relative overflow-hidden'>
                   <div className='absolute inset-0  bg-center opacity-5' />
@@ -1011,7 +938,7 @@ export default function HomePage() {
               <motion.div
                 whileHover={{ scale: 1.02, rotate: -1 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 200 }}
               >
                 <Card className='p-8 hover:shadow-glow-lg transition-all border-primary/20 relative overflow-hidden'>
                   <div className='absolute inset-0  bg-center opacity-5' />
@@ -1032,8 +959,8 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className='container py-24 bg-card/30 relative overflow-hidden'>
-        <div className='absolute inset-0 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 blur-3xl' />
+      <section className='container py-24 relative overflow-visible'>
+        <div className='absolute inset-0 bg-radial from-primary/20 to-transparent to-60% blur-3xl' />
         <FadeIn>
           <div className='mx-auto max-w-4xl text-center space-y-8 relative z-10'>
             <h2 className='text-3xl md:text-5xl font-bold'>
@@ -1046,7 +973,7 @@ export default function HomePage() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                transition={{ type: "spring", stiffness: 250 }}
               >
                 <Button
                   size='lg'
@@ -1062,7 +989,7 @@ export default function HomePage() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                transition={{ type: "spring", stiffness: 250 }}
               >
                 <Button
                   size='lg'
