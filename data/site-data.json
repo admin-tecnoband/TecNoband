@@ -233,12 +233,12 @@
     },
     "features": {
       "badge": "Feature-Rich Platform",
-      "heading": "Designed for Diverse IoT Frontiers",
+      "heading": "Powering Your Ecosystem with Innovative Features",
       "description": "Manage all your IoT devices in one place with live status monitoring, instant updates, and full lifecycle management.",
       "items": [
         {
           "title": "Device Management",
-          "description": "Centralized control for all your IoT devices with real-time status monitoring, instant updates, and comprehensive device lifecycle management from provisioning to retirement.",
+          "description": "Manage all your IoT devices in one place with live status monitoring, instant updates, and full lifecycle management.",
           "pills": ["Real-time Monitoring", "Bulk Operations", "Auto-Discovery"]
         },
         {
@@ -327,7 +327,7 @@
     "story": {
       "heading": "Our Story",
       "paragraphs": [
-        "Founded in 2020, TecNoBand emerged from a simple observation: managing IoT devices at scale was becoming increasingly complex and time-consuming. Our founders, experienced IoT engineers and data scientists, saw an opportunity to leverage artificial intelligence to automate and optimize device management.",
+        "Founded in 2023, TecNoBand emerged from a simple observation: managing IoT devices at scale was becoming increasingly complex and time-consuming. Our founders, experienced IoT engineers and data scientists, saw an opportunity to leverage artificial intelligence to automate and optimize device management.",
         "Today, we serve over 500 enterprise clients worldwide, managing more than 10 million connected devices across industries including manufacturing, healthcare, smart cities, and logistics. Our platform has evolved to become the industry standard for intelligent IoT management."
       ]
     },
@@ -377,7 +377,7 @@
     "hero": {
       "badge": "Contact Us",
       "titlePrefix": "Connect & Collaborate",
-      "titleHighlight": "Collaborate",
+      "titleHighlight": "",
       "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible."
     },
     "form": {
