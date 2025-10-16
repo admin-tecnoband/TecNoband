@@ -50,4 +50,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }} # Set in GitHub Secrets
           password: ${{ secrets.FTP_PASSWORD }} # Set in GitHub Secrets
           local-dir: ./out/ # Adjust based on your build output directory
-          server-dir: /test/ # Adjust based on your server directory
+          server-dir: / # Adjust based on your server directory
