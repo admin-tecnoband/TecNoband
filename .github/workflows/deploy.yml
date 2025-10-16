@@ -1,0 +1,33 @@
+# Create a deployment to a remote server with FTP credentials with build.
+# Run npm install and buil
+name: FTP Deploy
+on:
+  push:
+    branches:
+      - main # Set a branch name to deploy
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22" # Specify the Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build # Adjust this command based on your build script
+
+      - name: Deploy to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.FTP_SERVER }} # Set in GitHub Secrets
+          username: ${{ secrets.FTP_USERNAME }} # Set in GitHub Secrets
+          password: ${{ secrets.FTP_PASSWORD }} # Set in GitHub Secrets
+          local-dir: ./out # Adjust based on your build output directory
+          server-dir: /test # Adjust based on your server directory
