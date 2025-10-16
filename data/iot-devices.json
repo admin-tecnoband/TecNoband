@@ -60,5 +60,17 @@
     "battery": 78,
     "co2": 420,
     "pm25": 12
+  },
+  {
+    "id": "dev-007",
+    "name": "Environmental Sensor G1",
+    "type": "sensor",
+    "status": "online",
+    "location": "Building G - Floor 1",
+    "lastSeen": "2024-01-15T10:32:00Z",
+    "battery": 65,
+    "temperature": 21.0,
+    "humidity": 50,
+    "lightLevel": 300
   }
 ]
