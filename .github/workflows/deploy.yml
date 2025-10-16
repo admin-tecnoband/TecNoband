@@ -35,7 +35,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18" # Specify the Node.js version
+          node-version: "24" # Specify the Node.js version
 
       - name: Install dependencies
         run: npm install --include=dev
@@ -49,5 +49,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }} # Set in GitHub Secrets
           username: ${{ secrets.FTP_USERNAME }} # Set in GitHub Secrets
           password: ${{ secrets.FTP_PASSWORD }} # Set in GitHub Secrets
-          local-dir: ./out # Adjust based on your build output directory
-          server-dir: /test # Adjust based on your server directory
+          local-dir: ./out/ # Adjust based on your build output directory
+          server-dir: /test/ # Adjust based on your server directory
