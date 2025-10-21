@@ -58,6 +58,14 @@ export default function ContactPage() {
     script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
     script.async = true;
     script.defer = true;
+    // ensure consumers can wait for grecaptcha to be available
+    script.onload = () => {
+      try {
+        (window as any).__recaptchaLoaded = true;
+      } catch (e) {
+        // ignore
+      }
+    };
     document.head.appendChild(script);
 
     return () => {
@@ -65,21 +73,79 @@ export default function ContactPage() {
     };
   }, []);
 
+  // Helper to safely get a reCAPTCHA v3 token (uses grecaptcha.ready + execute)
+  async function getRecaptchaToken(action = "contact") {
+    const siteKey =
+      process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+      (window as any).NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    if (!siteKey) return null;
+
+    // wait for grecaptcha to be defined (brief timeout fallback)
+    const waitForGrecaptcha = () =>
+      new Promise<boolean>((resolve) => {
+        if ((window as any).grecaptcha) return resolve(true);
+        const start = Date.now();
+        const i = setInterval(() => {
+          if ((window as any).grecaptcha) {
+            clearInterval(i);
+            resolve(true);
+          }
+          if (Date.now() - start > 5000) {
+            clearInterval(i);
+            resolve(false);
+          }
+        }, 150);
+      });
+
+    const available = await waitForGrecaptcha();
+    if (!available || !(window as any).grecaptcha) return null;
+
+    try {
+      return await new Promise<string | null>((resolve) => {
+        try {
+          (window as any).grecaptcha.ready(() => {
+            (window as any).grecaptcha
+              .execute(siteKey, { action })
+              .then((token: string) => resolve(token))
+              .catch(() => resolve(null));
+          });
+        } catch (e) {
+          resolve(null);
+        }
+      });
+    } catch (e) {
+      return null;
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Acquire reCAPTCHA token
-      const siteKey =
+      // Acquire reCAPTCHA token (graceful)
+      let token = null;
+      try {
+        token = await getRecaptchaToken("contact");
+      } catch (e) {
+        token = null;
+      }
+
+      // If site is configured with a reCAPTCHA site key but we couldn't get a token,
+      // abort early and show a friendly message — the server expects a token when
+      // RECAPTCHA_SECRET_KEY is set in the function environment.
+      const siteKeyCheck =
         process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
         (window as any).NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-      let token = undefined;
-
-      if (siteKey && (window as any).grecaptcha) {
-        token = await (window as any).grecaptcha.execute(siteKey, {
-          action: "contact",
+      if (siteKeyCheck && !token) {
+        shadToast({
+          title: "reCAPTCHA unavailable",
+          description:
+            "Could not verify reCAPTCHA. Please reload the page and try again.",
+          variant: "destructive",
         });
+        setIsSubmitting(false);
+        return;
       }
 
       const supabase = getSupabaseBrowserClient();
