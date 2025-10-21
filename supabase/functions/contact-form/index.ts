@@ -1,49 +1,36 @@
 // @ts-nocheck
 // Supabase Edge Functions run on Deno. Type checking for Deno std libs is skipped in the monorepo TS build.
 import { serve } from "https://deno.land/std@0.208.0/http/server.ts";
-
-/**
- * Minimal shape for the incoming contact form payload.
- */
-interface ContactFormData {
-  name: string;
-  email: string;
-  company?: string;
-  message: string;
-}
-
-interface ResendEmailRequest {
-  from: string;
-  to: string[];
-  subject: string;
-  html: string;
-  reply_to?: string;
-}
-
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type",
 };
-
-serve(async (req: any) => {
+serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
-    return new Response("ok", { headers: corsHeaders });
+    return new Response("ok", {
+      headers: corsHeaders,
+    });
   }
-
   try {
     // Only allow POST requests
     if (req.method !== "POST") {
-      return new Response(JSON.stringify({ error: "Method not allowed" }), {
-        status: 405,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({
+          error: "Method not allowed",
+        }),
+        {
+          status: 405,
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+          },
+        }
+      );
     }
-
     // Get the request body
-    const formData: ContactFormData = await req.json();
-
+    const formData = await req.json();
     // Validate required fields
     if (!formData.name || !formData.email || !formData.message) {
       return new Response(
@@ -53,51 +40,62 @@ serve(async (req: any) => {
         }),
         {
           status: 400,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+          },
         }
       );
     }
-
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      return new Response(JSON.stringify({ error: "Invalid email format" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({
+          error: "Invalid email format",
+        }),
+        {
+          status: 400,
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+          },
+        }
+      );
     }
-
     // If a reCAPTCHA token is provided, verify it with Google
-    const recaptchaToken = (formData as any).recaptchaToken;
+    const recaptchaToken = formData.recaptchaToken;
     const recaptchaSecret = Deno.env.get("RECAPTCHA_SECRET_KEY");
-
     if (recaptchaSecret) {
       if (!recaptchaToken) {
         return new Response(
-          JSON.stringify({ error: "reCAPTCHA token missing" }),
+          JSON.stringify({
+            error: "reCAPTCHA token missing",
+          }),
           {
             status: 400,
-            headers: { ...corsHeaders, "Content-Type": "application/json" },
+            headers: {
+              ...corsHeaders,
+              "Content-Type": "application/json",
+            },
           }
         );
       }
-
       try {
         const params = new URLSearchParams();
         params.append("secret", recaptchaSecret);
         params.append("response", recaptchaToken);
-
         const googleRes = await fetch(
           "https://www.google.com/recaptcha/api/siteverify",
           {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
             body: params.toString(),
           }
         );
-
         const googleJson = await googleRes.json();
-
         // For v3, check score and success
         if (
           !googleJson.success ||
@@ -105,42 +103,54 @@ serve(async (req: any) => {
         ) {
           console.warn("reCAPTCHA verification failed", googleJson);
           return new Response(
-            JSON.stringify({ error: "reCAPTCHA verification failed" }),
+            JSON.stringify({
+              error: "reCAPTCHA verification failed",
+            }),
             {
               status: 400,
-              headers: { ...corsHeaders, "Content-Type": "application/json" },
+              headers: {
+                ...corsHeaders,
+                "Content-Type": "application/json",
+              },
             }
           );
         }
       } catch (err) {
         console.error("Error verifying reCAPTCHA", err);
         return new Response(
-          JSON.stringify({ error: "Error verifying reCAPTCHA" }),
+          JSON.stringify({
+            error: "Error verifying reCAPTCHA",
+          }),
           {
             status: 500,
-            headers: { ...corsHeaders, "Content-Type": "application/json" },
+            headers: {
+              ...corsHeaders,
+              "Content-Type": "application/json",
+            },
           }
         );
       }
     }
-
     // Get Resend API key from environment
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
     if (!resendApiKey) {
       console.error("RESEND_API_KEY environment variable is not set");
       return new Response(
-        JSON.stringify({ error: "Email service configuration error" }),
+        JSON.stringify({
+          error: "Email service configuration error",
+        }),
         {
           status: 500,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+          },
         }
       );
     }
-
     // Get configuration from environment variables
-    const fromEmail = Deno.env.get("FROM_EMAIL") || "noreply@tecnoband.com";
+    const fromEmail = Deno.env.get("FROM_EMAIL") || "contactform@tecnoband.com";
     const toEmail = Deno.env.get("TO_EMAIL") || "support@tecnoband.com";
-
     // Create the email content
     const emailHtml = `
       <!DOCTYPE html>
@@ -258,16 +268,14 @@ serve(async (req: any) => {
         </body>
       </html>
     `;
-
     // Prepare the email request for Resend
-    const emailRequest: ResendEmailRequest = {
+    const emailRequest = {
       from: fromEmail,
       to: [toEmail],
       subject: `New Contact Form Submission from ${formData.name}`,
       html: emailHtml,
       reply_to: formData.email,
     };
-
     // Send email via Resend API
     const resendResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -277,7 +285,6 @@ serve(async (req: any) => {
       },
       body: JSON.stringify(emailRequest),
     });
-
     if (!resendResponse.ok) {
       const resendError = await resendResponse.text();
       console.error("Resend API error:", resendError);
@@ -288,14 +295,15 @@ serve(async (req: any) => {
         }),
         {
           status: 500,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+          },
         }
       );
     }
-
     const resendResult = await resendResponse.json();
     console.log("Email sent successfully:", resendResult);
-
     // Return success response
     return new Response(
       JSON.stringify({
@@ -306,7 +314,10 @@ serve(async (req: any) => {
       }),
       {
         status: 200,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        headers: {
+          ...corsHeaders,
+          "Content-Type": "application/json",
+        },
       }
     );
   } catch (error) {
@@ -318,7 +329,10 @@ serve(async (req: any) => {
       }),
       {
         status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        headers: {
+          ...corsHeaders,
+          "Content-Type": "application/json",
+        },
       }
     );
   }
