@@ -131,13 +131,19 @@ export default function ContactPage() {
         token = null;
       }
 
-      // If site is configured with a reCAPTCHA site key but we couldn't get a token,
-      // abort early and show a friendly message — the server expects a token when
-      // RECAPTCHA_SECRET_KEY is set in the function environment.
+      // Determine whether reCAPTCHA is expected (site key configured or script present).
       const siteKeyCheck =
         process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
         (window as any).NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-      if (siteKeyCheck && !token) {
+      const scriptPresent = !!document.getElementById("recaptcha-v3-script");
+      const recaptchaExpected = !!(
+        siteKeyCheck ||
+        scriptPresent ||
+        (window as any).__recaptchaLoaded
+      );
+
+      // If recaptcha is expected (configured) but we couldn't get a token, abort.
+      if (recaptchaExpected && !token) {
         shadToast({
           title: "reCAPTCHA unavailable",
           description:
@@ -150,14 +156,17 @@ export default function ContactPage() {
 
       const supabase = getSupabaseBrowserClient();
 
+      // Build body and only include recaptchaToken when it's available.
+      const body: Record<string, any> = {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        message: formData.message,
+      };
+      if (token) body.recaptchaToken = token;
+
       const { data, error } = await supabase.functions.invoke("contact-form", {
-        body: {
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          message: formData.message,
-          recaptchaToken: token,
-        },
+        body,
       });
 
       if (error) {
