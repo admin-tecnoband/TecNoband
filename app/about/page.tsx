@@ -2,21 +2,28 @@
 import { MarketingLayout } from "@/components/marketing/marketing-layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Users, Target, Lightbulb, Award } from "lucide-react";
 import siteData from "@/data/site-data.json";
 import { FadeIn } from "@/components/animations/fade-in";
 import {
   StaggerContainer,
   StaggerItem,
 } from "@/components/animations/stagger-container";
+import Image from "next/image";
+import teamMember1 from "@/public/images/team_1.webp";
+import teamMember2 from "@/public/images/team_2.webp";
+import teamMember3 from "@/public/images/team_3.webp";
+import icon1 from "@/public/images/icon_1.webp";
+import icon2 from "@/public/images/icon_2.webp";
+import icon3 from "@/public/images/icon_3.webp";
+import icon4 from "@/public/images/icon_4.webp";
 
 export default function AboutPage() {
   return (
     <MarketingLayout>
       {/* Hero Section */}
-      <section className='container py-24 md:py-32 relative overflow-hidden'>
+      <section className='w-full py-24 md:py-32 relative overflow-hidden'>
         {/* Background image + animated gradient like homepage */}
-        <div className='absolute inset-0 bg-[url("https://picsum.photos/seed/picsum/400/600")] bg-cover bg-center opacity-5' />
+        <div className='absolute inset-0 bg-[url("/images/about.webp")] bg-cover bg-center bg-no-repeat opacity-15' />
         <motion.div
           className='absolute inset-0 bg-gradient-to-r from-primary/10 to-background bg-[length:200%_100%]'
           animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
@@ -119,18 +126,15 @@ export default function AboutPage() {
                         <motion.div
                           whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                           transition={{ duration: 0.8 }}
-                          className='flex-shrink-0 h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center shadow-lg shadow-primary/30'
+                          className='flex-shrink-0 h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center shadow-lg shadow-primary/30 overflow-hidden'
                         >
-                          {/* Reuse icons in order: Target, Lightbulb, Users, Award */}
-                          {i === 0 ? (
-                            <Target className='h-8 w-8 text-primary' />
-                          ) : i === 1 ? (
-                            <Lightbulb className='h-8 w-8 text-secondary' />
-                          ) : i === 2 ? (
-                            <Users className='h-8 w-8 text-accent' />
-                          ) : (
-                            <Award className='h-8 w-8 text-chart-2' />
-                          )}
+                          <Image
+                            src={i === 0 ? icon1 : i === 1 ? icon2 : i === 2 ? icon3 : icon4}
+                            alt={val.title}
+                            width={64}
+                            height={64}
+                            className='h-10 w-10 object-contain'
+                          />
                         </motion.div>
                         <div className='space-y-3'>
                           <h3 className='text-2xl font-semibold'>
@@ -181,21 +185,15 @@ export default function AboutPage() {
                     } relative overflow-hidden bg-background/80 backdrop-blur-sm`}
                   >
                     <CardContent className='pt-8 pb-8 text-center space-y-6 relative z-10'>
-                      <div
-                        className={`w-24 h-24 rounded-full bg-gradient-to-br ${
-                          i === 0
-                            ? "from-primary to-secondary"
-                            : i === 1
-                            ? "from-accent to-destructive"
-                            : "from-secondary to-accent"
-                        } mx-auto shadow-lg ${
-                          i === 0
-                            ? "shadow-primary/30"
-                            : i === 1
-                            ? "shadow-accent/30"
-                            : "shadow-secondary/30"
-                        }`}
-                      />
+                      <div className='w-24 h-24 rounded-full overflow-hidden mx-auto shadow-lg shadow-primary/30'>
+                        <Image
+                          src={i === 0 ? teamMember1 : i === 1 ? teamMember2 : teamMember3}
+                          alt={m.name}
+                          width={96}
+                          height={96}
+                          className='w-full h-full object-cover'
+                        />
+                      </div>
                       <div className='space-y-2'>
                         <h3 className='text-xl font-semibold'>{m.name}</h3>
                         <p className='text-sm text-muted-foreground'>

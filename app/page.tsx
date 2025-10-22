@@ -9,12 +9,7 @@ import {
   Cpu,
   Shield,
   Zap,
-  BarChart3,
-  Bell,
-  Lock,
   Users,
-  Globe,
-  TrendingUp,
   CheckCircle2,
   Star,
   ChevronLeft,
@@ -29,6 +24,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import siteData from "@/data/site-data.json";
+// Import feature iamges as elements
+import icon1 from "@/public/images/feature_1.webp";
+import icon2 from "@/public/images/feature_2.webp";
+import icon3 from "@/public/images/feature_3.webp";
+import icon4 from "@/public/images/feature_4.webp";
+import icon5 from "@/public/images/feature_5.webp";
+import icon6 from "@/public/images/feature_6.webp";
+import cardIcon1 from "@/public/images/icon_1.webp";
+import cardIcon2 from "@/public/images/icon_2.webp";
+import cardIcon3 from "@/public/images/icon_3.webp";
+import cardIcon4 from "@/public/images/icon_4.webp";
+import testimonial_1 from "@/public/images/testimonial_1.webp";
+import testimonial_2 from "@/public/images/testimonial_2.webp";
+import testimonial_3 from "@/public/images/testimonial_3.webp";
 
 export default function HomePage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -39,21 +48,24 @@ export default function HomePage() {
         "The real-time monitoring and predictive insights have completely improved our production efficiency. We can now anticipate equipment issues and reduce downtime significantly.",
       author: "Matteo Rossi",
       role: "Operations Manager, Apex Industries",
-      gradient: "from-primary to-secondary",
+      image: testimonial_1,
+      rating: 5,
     },
     {
       quote:
         "Managing medical devices and patient monitoring systems has become effortless. The integrated controls help our team stay proactive and maintain high operational standards.",
       author: "Sofia Alvarez",
       role: "CTO, Horizon Medical",
-      gradient: "from-secondary to-accent",
+      image: testimonial_2,
+      rating: 4,
     },
     {
       quote:
         "From energy consumption to environmental sensors, we now have actionable insights across all city systems. This has helped us optimize resources and improve overall efficiency.",
       author: "Kwame Mensah",
       role: "Director, Metro City Council",
-      gradient: "from-accent to-primary",
+      image: testimonial_3,
+      rating: 5,
     },
   ];
 
@@ -70,10 +82,10 @@ export default function HomePage() {
   return (
     <MarketingLayout>
       {/* Hero Section */}
-      <section className='container py-24 md:py-32 relative overflow-visible'>
-        <div className='absolute inset-0 bg-[url("https://picsum.photos/seed/picsum/400/600")] bg-cover bg-center opacity-5' />
+      <section className='w-full py-24 md:py-32 relative overflow-visible'>
+        <div className='absolute inset-0 bg-[url("/images/hero.webp")] bg-cover bg-no-repeat bg-center opacity-15' />
         <motion.div
-          className='absolute inset-0 bg-gradient-to-r from-transparent via-accent/50 to-transparent bg-[length:200%_100%]'
+          className='w-full absolute inset-0 bg-gradient-to-r from-transparent via-accent/20 to-transparent bg-[length:200%_100%]'
           animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
           transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
         />
@@ -86,7 +98,7 @@ export default function HomePage() {
           <FadeIn delay={0.2}>
             <h1 className='text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance'>
               {siteData.home.hero.titlePrefix}{" "}
-              <span className='bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent text-glow'>
+              <span className='bg-gradient-to-r from-primary to-secondary/50 bg-clip-text text-transparent text-glow'>
                 {siteData.home.hero.titleHighlight}
               </span>
             </h1>
@@ -387,9 +399,15 @@ export default function HomePage() {
                   <motion.div
                     whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
-                    className='h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-6 shadow-lg shadow-primary/30 relative z-10'
+                    className='h-14 w-14 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-6 shadow-md shadow-primary/20 relative z-10 overflow-hidden'
                   >
-                    <Cpu className='h-8 w-8 text-primary' />
+                    <Image
+                      src={icon1}
+                      alt='Device Management'
+                      width={40}
+                      height={40}
+                      className='h-10 w-10 object-contain'
+                    />
                   </motion.div>
 
                   <div className='relative z-10'>
@@ -434,9 +452,15 @@ export default function HomePage() {
                   <motion.div
                     whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
-                    className='h-16 w-16 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center mb-6 shadow-lg shadow-secondary/30 relative z-10'
+                    className='h-14 w-14 rounded-xl bg-gradient-to-br from-secondary/10 to-secondary/5 flex items-center justify-center mb-6 shadow-md shadow-secondary/20 relative z-10 overflow-hidden'
                   >
-                    <BarChart3 className='h-8 w-8 text-secondary' />
+                    <Image
+                      src={icon2}
+                      alt='AI Analytics'
+                      width={40}
+                      height={40}
+                      className='h-10 w-10 object-contain'
+                    />
                   </motion.div>
 
                   <div className='relative z-10'>
@@ -468,9 +492,15 @@ export default function HomePage() {
                   <motion.div
                     whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
-                    className='h-16 w-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-6 shadow-lg shadow-accent/30 relative z-10'
+                    className='h-14 w-14 rounded-xl bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center mb-6 shadow-md shadow-accent/20 relative z-10 overflow-hidden'
                   >
-                    <Shield className='h-8 w-8 text-accent' />
+                    <Image
+                      src={icon3}
+                      alt='Enterprise Security'
+                      width={40}
+                      height={40}
+                      className='h-10 w-10 object-contain'
+                    />
                   </motion.div>
 
                   <div className='relative z-10'>
@@ -502,9 +532,15 @@ export default function HomePage() {
                   <motion.div
                     whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
-                    className='h-16 w-16 rounded-2xl bg-gradient-to-br from-chart-2/20 to-chart-2/5 flex items-center justify-center mb-6 shadow-lg shadow-primary/30 relative z-10'
+                    className='h-14 w-14 rounded-xl bg-gradient-to-br from-chart-2/10 to-chart-2/5 flex items-center justify-center mb-6 shadow-md shadow-primary/20 relative z-10 overflow-hidden'
                   >
-                    <Zap className='h-8 w-8 text-chart-2' />
+                    <Image
+                      src={icon4}
+                      alt='Real-time Updates'
+                      width={40}
+                      height={40}
+                      className='h-10 w-10 object-contain'
+                    />
                   </motion.div>
 
                   <div className='relative z-10'>
@@ -536,9 +572,15 @@ export default function HomePage() {
                   <motion.div
                     whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
-                    className='h-16 w-16 rounded-2xl bg-gradient-to-br from-destructive/20 to-destructive/5 flex items-center justify-center mb-6 shadow-lg shadow-destructive/30 relative z-10'
+                    className='h-14 w-14 rounded-xl bg-gradient-to-br from-destructive/10 to-destructive/5 flex items-center justify-center mb-6 shadow-md shadow-destructive/20 relative z-10 overflow-hidden'
                   >
-                    <Bell className='h-8 w-8 text-destructive' />
+                    <Image
+                      src={icon5}
+                      alt='Smart Alerts'
+                      width={40}
+                      height={40}
+                      className='h-10 w-10 object-contain'
+                    />
                   </motion.div>
 
                   <div className='relative z-10'>
@@ -583,9 +625,15 @@ export default function HomePage() {
                   <motion.div
                     whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                     transition={{ duration: 0.8 }}
-                    className='h-16 w-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-6 shadow-lg shadow-accent/30 relative z-10'
+                    className='h-14 w-14 rounded-xl bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center mb-6 shadow-md shadow-accent/20 relative z-10 overflow-hidden'
                   >
-                    <Lock className='h-8 w-8 text-accent' />
+                    <Image
+                      src={icon6}
+                      alt='Access Control'
+                      width={40}
+                      height={40}
+                      className='h-10 w-10 object-contain'
+                    />
                   </motion.div>
 
                   <div className='relative z-10'>
@@ -628,15 +676,14 @@ export default function HomePage() {
             >
               <div className='absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 animate-pulse' />
               <Image
-                src='https://picsum.photos/seed/picsum/400/600'
+                src='/images/home_2.webp'
                 alt='IoT Industry Solutions'
                 className='w-full h-full object-cover'
-                width={800}
-                height={450}
+                width={1920}
+                height={1080}
                 priority={true}
               />
               <div className='absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent' />
-              <div className='absolute inset-0 backdrop-blur-[2px]' />
             </motion.div>
 
             {/* Floating Cards positioned at corners - rendered from siteData.home.floatingCards */}
@@ -645,13 +692,8 @@ export default function HomePage() {
               className='absolute flex flex-col gap-2 inset-0 pointer-events-none'
             >
               {siteData.home.floatingCards?.map((card, idx) => {
-                const Icon =
-                  {
-                    Globe,
-                    Users,
-                    TrendingUp,
-                    Shield,
-                  }[card.icon] || Globe;
+                const cardIcons = [cardIcon1, cardIcon2, cardIcon3, cardIcon4];
+                const CardIcon = cardIcons[idx] || cardIcon1;
 
                 const variantClasses = {
                   primary:
@@ -688,9 +730,9 @@ export default function HomePage() {
                         className={`p-10 ${variantClasses} backdrop-blur-md relative overflow-hidden`}
                       >
                         <div className='absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent' />
-                        <div className='flex items-start gap-4 relative z-10'>
+                        <div className='flex items-center gap-4 relative z-10'>
                           <div
-                            className={`h-12 w-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                            className={`h-12 w-12 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden ${
                               card.variant === "secondary"
                                 ? "bg-secondary/20 shadow-secondary/50"
                                 : card.variant === "accent"
@@ -698,17 +740,23 @@ export default function HomePage() {
                                 : "bg-primary/20 shadow-primary/50"
                             }`}
                           >
-                            <Icon className='h-6 w-6 text-current' />
+                            <Image
+                              src={CardIcon}
+                              alt={`${card.title} icon`}
+                              width={40}
+                              height={40}
+                              className='h-10 w-10 object-contain'
+                            />
                           </div>
                           <div>
                             <h3 className='text-xl font-bold mb-2'>
                               {card.title}
                             </h3>
-                            <p className='text-muted-foreground text-sm'>
-                              {card.description}
-                            </p>
                           </div>
                         </div>
+                        <p className='text-muted-foreground text-sm'>
+                          {card.description}
+                        </p>
                       </Card>
                     </motion.div>
                   </StaggerItem>
@@ -726,17 +774,6 @@ export default function HomePage() {
           animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
           transition={{ duration: 12, repeat: Infinity, repeatType: "reverse" }}
         />
-        {/* Background Image */}
-        <div className='absolute inset-0'>
-          <Image
-            src='https://picsum.photos/seed/picsum/400/600'
-            alt='Testimonials Background'
-            fill
-            className='object-cover opacity-10'
-            priority={false}
-          />
-          <div className='absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/80' />
-        </div>
 
         <div className='mx-auto max-w-6xl relative z-10'>
           <FadeIn delay={0.1}>
@@ -779,21 +816,30 @@ export default function HomePage() {
                   className='absolute inset-0 flex items-center justify-center'
                 >
                   <Card className='p-8 md:p-12 shadow-glow-lg border-primary/30 bg-background/95 backdrop-blur-md relative overflow-hidden max-w-3xl w-full'>
-                    <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10' />
-                    <div className='absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-accent/20 to-transparent rounded-full blur-3xl' />
+                    {/* Testimonial Image Background */}
+                    <div className='absolute inset-0'>
+                      <Image
+                        src={testimonials[currentTestimonial].image}
+                        alt={testimonials[currentTestimonial].author}
+                        fill
+                        className='object-cover opacity-10'
+                      />
+                    </div>
 
                     {/* Stars */}
                     <div className='flex gap-1 mb-6 justify-center relative z-10'>
-                      {[...Array(5)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ scale: 0, rotate: -180 }}
-                          animate={{ scale: 1, rotate: 0 }}
-                          transition={{ delay: i * 0.1, type: "spring" }}
-                        >
-                          <Star className='h-6 w-6 fill-primary text-primary' />
-                        </motion.div>
-                      ))}
+                      {[...Array(testimonials[currentTestimonial].rating)].map(
+                        (_, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ scale: 0, rotate: -180 }}
+                            animate={{ scale: 1, rotate: 0 }}
+                            transition={{ delay: i * 0.1, type: "spring" }}
+                          >
+                            <Star className='h-6 w-6 fill-primary text-primary' />
+                          </motion.div>
+                        )
+                      )}
                     </div>
 
                     {/* Quote */}
@@ -803,9 +849,15 @@ export default function HomePage() {
 
                     {/* Author */}
                     <div className='flex items-center justify-center gap-4 relative z-10'>
-                      <div
-                        className={`h-16 w-16 rounded-full bg-gradient-to-br ${testimonials[currentTestimonial].gradient} shadow-lg`}
-                      />
+                      <div className='h-16 w-16 rounded-full overflow-hidden shadow-lg'>
+                        <Image
+                          src={testimonials[currentTestimonial].image}
+                          alt={testimonials[currentTestimonial].author}
+                          width={64}
+                          height={64}
+                          className='w-full h-full object-cover'
+                        />
+                      </div>
                       <div className='text-left'>
                         <p className='font-bold text-lg'>
                           {testimonials[currentTestimonial].author}
@@ -874,84 +926,135 @@ export default function HomePage() {
           <div className='grid md:grid-cols-2 gap-8'>
             <FadeIn delay={0.2}>
               <motion.div
-                whileHover={{ scale: 1.02, rotate: 1 }}
+                initial={{}}
+                whileHover={{}}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 200 }}
               >
-                <Card className='p-8 hover:shadow-glow-lg transition-all border-primary/20 relative overflow-hidden'>
-                  <div className='absolute inset-0  bg-center opacity-5' />
-                  <CheckCircle2 className='h-12 w-12 text-primary mb-4 relative z-10' />
-                  <h3 className='text-2xl font-bold mb-3 relative z-10'>
-                    Enterprise-Grade Reliability
-                  </h3>
-                  <p className='text-muted-foreground leading-relaxed relative z-10'>
-                    Built on robust infrastructure with 99.9% uptime SLA,
-                    automatic failover, and disaster recovery. Your devices stay
-                    connected, always.
-                  </p>
-                </Card>
+                <div className='p-8 relative overflow-hidden rounded-2xl bg-background/80 border border-primary/10 transition-transform transform hover:-translate-y-2 hover:shadow-2xl'>
+                  <div className='absolute -top-6 -right-6 w-36 h-36 rounded-full bg-primary/6 blur-3xl pointer-events-none' />
+                  <div className='relative z-10 flex flex-col items-center text-center'>
+                    <motion.div
+                      initial={{ scale: 1, opacity: 0.25 }}
+                      whileHover={{ opacity: 1, scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 200 }}
+                      className='mb-4 relative'
+                    >
+                      <CheckCircle2 className='h-12 w-12 text-primary relative z-10' />
+                    </motion.div>
+
+                    <h3 className='text-2xl font-bold mb-3'>
+                      Enterprise-Grade Reliability
+                    </h3>
+                    <p className='text-muted-foreground leading-relaxed max-w-xl'>
+                      Built on robust infrastructure with 99.9% uptime SLA,
+                      automatic failover, and disaster recovery. Your devices
+                      stay connected, always.
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             </FadeIn>
 
             <FadeIn delay={0.3}>
               <motion.div
-                whileHover={{ scale: 1.02, rotate: -1 }}
+                whileHover={{}}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 200 }}
               >
-                <Card className='p-8 hover:shadow-glow-lg transition-all border-secondary/20 relative overflow-hidden'>
-                  <div className='absolute inset-0  bg-center opacity-5' />
-                  <CheckCircle2 className='h-12 w-12 text-secondary mb-4 relative z-10' />
-                  <h3 className='text-2xl font-bold mb-3 relative z-10'>
-                    AI-Powered Insights
-                  </h3>
-                  <p className='text-muted-foreground leading-relaxed relative z-10'>
-                    Our machine learning algorithms analyze patterns, predict
-                    failures, and provide actionable recommendations to optimize
-                    your operations.
-                  </p>
-                </Card>
+                <div className='p-8 relative overflow-hidden rounded-2xl bg-background/80 border border-secondary/10 transition-transform transform hover:-translate-y-2 hover:shadow-2xl'>
+                  <div className='absolute -top-6 -left-6 w-36 h-36 rounded-full bg-secondary/6 blur-3xl pointer-events-none' />
+                  <div className='relative z-10 flex flex-col items-center text-center'>
+                    <motion.div
+                      initial={{ scale: 1, opacity: 0.25 }}
+                      whileHover={{ opacity: 1, scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 200 }}
+                      className='mb-4 relative'
+                    >
+                      <div className='absolute inset-0 flex items-center justify-center'>
+                        <span className='block w-16 h-16 rounded-full bg-secondary/10' />
+                      </div>
+                      <CheckCircle2 className='h-12 w-12 text-secondary relative z-10' />
+                    </motion.div>
+
+                    <h3 className='text-2xl font-bold mb-3'>
+                      AI-Powered Insights
+                    </h3>
+                    <p className='text-muted-foreground leading-relaxed max-w-xl'>
+                      Our machine learning algorithms analyze patterns, predict
+                      failures, and provide actionable recommendations to
+                      optimize your operations.
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             </FadeIn>
 
             <FadeIn delay={0.4}>
               <motion.div
-                whileHover={{ scale: 1.02, rotate: 1 }}
+                whileHover={{}}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 200 }}
               >
-                <Card className='p-8 hover:shadow-glow-lg transition-all border-accent/20 relative overflow-hidden'>
-                  <div className='absolute inset-0  bg-center opacity-5' />
-                  <CheckCircle2 className='h-12 w-12 text-accent mb-4 relative z-10' />
-                  <h3 className='text-2xl font-bold mb-3 relative z-10'>
-                    Seamless Integration
-                  </h3>
-                  <p className='text-muted-foreground leading-relaxed relative z-10'>
-                    Connect with existing systems through our comprehensive API,
-                    webhooks, and pre-built integrations with popular platforms.
-                  </p>
-                </Card>
+                <div className='p-8 relative overflow-hidden rounded-2xl bg-background/80 border border-accent/10 transition-transform transform hover:-translate-y-2 hover:shadow-2xl'>
+                  <div className='absolute -bottom-6 -right-6 w-36 h-36 rounded-full bg-accent/6 blur-3xl pointer-events-none' />
+                  <div className='relative z-10 flex flex-col items-center text-center'>
+                    <motion.div
+                      initial={{ scale: 1, opacity: 0.25 }}
+                      whileHover={{ opacity: 1, scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 200 }}
+                      className='mb-4 relative'
+                    >
+                      <div className='absolute inset-0 flex items-center justify-center'>
+                        <span className='block w-16 h-16 rounded-full bg-accent/10' />
+                      </div>
+                      <CheckCircle2 className='h-12 w-12 text-accent relative z-10' />
+                    </motion.div>
+
+                    <h3 className='text-2xl font-bold mb-3'>
+                      Seamless Integration
+                    </h3>
+                    <p className='text-muted-foreground leading-relaxed max-w-xl'>
+                      Connect with existing systems through our comprehensive
+                      API, webhooks, and pre-built integrations with popular
+                      platforms.
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             </FadeIn>
 
             <FadeIn delay={0.5}>
               <motion.div
-                whileHover={{ scale: 1.02, rotate: -1 }}
+                whileHover={{}}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 200 }}
               >
-                <Card className='p-8 hover:shadow-glow-lg transition-all border-primary/20 relative overflow-hidden'>
-                  <div className='absolute inset-0  bg-center opacity-5' />
-                  <CheckCircle2 className='h-12 w-12 text-primary mb-4 relative z-10' />
-                  <h3 className='text-2xl font-bold mb-3 relative z-10'>
-                    World-Class Support
-                  </h3>
-                  <p className='text-muted-foreground leading-relaxed relative z-10'>
-                    24/7 expert support, dedicated account managers for
-                    enterprise clients, and comprehensive documentation to help
-                    you succeed.
-                  </p>
-                </Card>
+                <div className='p-8 relative overflow-hidden rounded-2xl bg-background/80 border border-primary/10 transition-transform transform hover:-translate-y-2 hover:shadow-2xl'>
+                  <div className='absolute -bottom-6 -left-6 w-36 h-36 rounded-full bg-primary/6 blur-3xl pointer-events-none' />
+                  <div className='relative z-10 flex flex-col items-center text-center'>
+                    <motion.div
+                      initial={{ scale: 1, opacity: 0.25 }}
+                      whileHover={{ opacity: 1, scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 200 }}
+                      className='mb-4 relative'
+                    >
+                      <div className='absolute inset-0 flex items-center justify-center'>
+                        <span className='block w-16 h-16 rounded-full bg-primary/10' />
+                      </div>
+                      <CheckCircle2 className='h-12 w-12 text-primary relative z-10' />
+                    </motion.div>
+
+                    <h3 className='text-2xl font-bold mb-3'>
+                      World-Class Support
+                    </h3>
+                    <p className='text-muted-foreground leading-relaxed max-w-xl'>
+                      24/7 expert support, dedicated account managers for
+                      enterprise clients, and comprehensive documentation to
+                      help you succeed.
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             </FadeIn>
           </div>

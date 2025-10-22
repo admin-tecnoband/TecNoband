@@ -55,12 +55,13 @@ export function Logo({ className }: { className?: string }) {
 
   return (
     <Link href='/' className={"flex items-center gap-3 " + (className || "")}>
-      <div className='h-8'>
+      <div className='h-12'>
         <Image
           src={src}
           alt='TecNoBand'
-          width={120}
-          height={32}
+          width={250}
+          height={64}
+          className="w-full h-full"
           priority={false}
           onError={(e) => {
             // If the chosen variant fails to load, fall back to the default logo.webp

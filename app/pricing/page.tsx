@@ -32,9 +32,9 @@ export default function PricingPage() {
   return (
     <MarketingLayout>
       {/* Hero Section */}
-      <section className='relative container py-24 px-4 overflow-hidden'>
+      <section className='relative w-full py-24 md:py-32 overflow-hidden'>
         {/* Background image + animated gradient */}
-        <div className='absolute inset-0 bg-[url("https://picsum.photos/seed/picsum/400/600")] bg-cover bg-center opacity-5' />
+        <div className='absolute inset-0 bg-[url("/images/pricing.webp")] bg-cover bg-center opacity-15' />
         <motion.div
           className='absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 bg-[length:200%_100%]'
           animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}

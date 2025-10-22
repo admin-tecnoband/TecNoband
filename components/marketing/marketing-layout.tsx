@@ -8,7 +8,7 @@ export function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className='flex min-h-screen flex-col'>
       <Header />
-      <main className='flex flex-col justify-center items-center px-4 md:px-8'>
+      <main className='flex flex-col justify-center items-center'>
         {children}
       </main>
       {/* Client-side chatbot widget for marketing pages */}

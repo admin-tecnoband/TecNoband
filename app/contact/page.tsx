@@ -142,9 +142,9 @@ export default function ContactPage() {
   return (
     <MarketingLayout>
       {/* Hero Section */}
-      <section className='container py-24 md:py-32 relative overflow-hidden'>
+      <section className='w-full py-24 md:py-32 relative overflow-hidden'>
         {/* Background image and animated gradient (homepage-style) */}
-        <div className='absolute inset-0 bg-[url("https://picsum.photos/seed/picsum/400/600")] bg-cover bg-center opacity-5' />
+        <div className='absolute inset-0 bg-[url("/images/contact.webp")] bg-cover bg-center bg-no-repeat opacity-15' />
         <motion.div
           className='absolute inset-0 bg-gradient-to-r from-primary/10 to-background bg-[length:200%_100%]'
           animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
