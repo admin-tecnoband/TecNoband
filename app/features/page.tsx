@@ -4,36 +4,35 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import {
-  Cpu,
-  BarChart3,
-  Shield,
-  Zap,
-  Bell,
-  Lock,
-  Cloud,
-  Smartphone,
-  GitBranch,
-  Database,
-  Activity,
-  Settings,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/animations/fade-in";
 import {
   StaggerContainer,
   StaggerItem,
 } from "@/components/animations/stagger-container";
 import siteData from "@/data/site-data.json";
+import icon1 from "@/public/images/feature_1.webp";
+import icon2 from "@/public/images/feature_2.webp";
+import icon3 from "@/public/images/feature_3.webp";
+import icon4 from "@/public/images/feature_4.webp";
+import icon5 from "@/public/images/feature_5.webp";
+import icon6 from "@/public/images/feature_6.webp";
+import icon7 from "@/public/images/feature_7.webp";
+import icon8 from "@/public/images/feature_8.webp";
+import icon9 from "@/public/images/feature_9.webp";
+import icon10 from "@/public/images/feature_10.webp";
+import icon11 from "@/public/images/feature_11.webp";
+import icon12 from "@/public/images/feature_12.webp";
 
 export default function FeaturesPage() {
   return (
     <MarketingLayout>
       {/* Hero Section */}
-      <section className='container py-24 md:py-32 relative overflow-hidden'>
+      <section className='w-full py-24 md:py-32 relative overflow-hidden'>
         <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 blur-3xl' />
-        <div className='absolute inset-0 bg-[url("https://picsum.photos/seed/picsum/400/600")] bg-cover bg-center opacity-5' />
+        <div className='absolute inset-0 bg-[url("/images/features.webp")] bg-cover bg-no-repeat bg-center opacity-15' />
         <motion.div
           className='absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5'
           animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
@@ -130,22 +129,22 @@ export default function FeaturesPage() {
             className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'
           >
             {siteData.features.items.map((item, idx) => {
-              // Map icons to index to roughly preserve original visuals
-              const icons = [
-                Cpu,
-                BarChart3,
-                Shield,
-                Zap,
-                Bell,
-                Lock,
-                Cloud,
-                Smartphone,
-                GitBranch,
-                Database,
-                Activity,
-                Settings,
+              // Map feature images to index
+              const featureImages = [
+                icon1,
+                icon2,
+                icon3,
+                icon4,
+                icon5,
+                icon6,
+                icon7,
+                icon8,
+                icon9,
+                icon10,
+                icon11,
+                icon12,
               ];
-              const Icon = icons[idx] || Cpu;
+              const FeatureImage = featureImages[idx] || icon1;
 
               // Make the first item span two columns like the original layout
               const containerClass =
@@ -168,9 +167,15 @@ export default function FeaturesPage() {
                       <motion.div
                         whileHover={{ rotate: 2, scale: 1.06, y: -2 }}
                         transition={{ duration: 0.8 }}
-                        className='h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-6 shadow-lg shadow-primary/30 relative z-10'
+                        className='h-14 w-14 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-6 shadow-md shadow-primary/20 relative z-10 overflow-hidden'
                       >
-                        <Icon className='h-8 w-8 text-primary' />
+                        <Image
+                          src={FeatureImage}
+                          alt={item.title}
+                          width={40}
+                          height={40}
+                          className='h-10 w-10 object-contain'
+                        />
                       </motion.div>
 
                       <div className='relative z-10'>
