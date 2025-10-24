@@ -57,7 +57,7 @@ export function Header() {
 
       {/* Main Header */}
       <header className='sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-glow'>
-        <nav className='container flex h-auto p- items-center justify-between mx-auto'>
+        <nav className='container flex h-auto p-4 items-center justify-between mx-auto'>
           <Logo />
 
           {/* Desktop Navigation */}
