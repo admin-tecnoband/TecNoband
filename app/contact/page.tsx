@@ -583,7 +583,7 @@ export default function ContactPage() {
               </Badge>
               <h2 className='text-3xl md:text-5xl font-bold'>Our Location</h2>
               <p className='text-xl text-muted-foreground max-w-2xl mx-auto'>
-                Find us in the heart of San Francisco&apos;s tech district
+                Find us in the heart of Colombo&apos;s tech district
               </p>
             </div>
           </FadeIn>
