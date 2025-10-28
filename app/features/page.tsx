@@ -70,7 +70,7 @@ export default function FeaturesPage() {
                   asChild
                   className='shadow-glow-lg hover:shadow-glow transition-all'
                 >
-                  <Link href='/auth/signup'>
+                  <Link href='/auth/signup' target='_blank' rel='noopener noreferrer'>
                     {siteData.features.heroCTAs.primary}{" "}
                     <ArrowRight className='ml-2 h-4 w-4' />
                   </Link>
@@ -87,7 +87,7 @@ export default function FeaturesPage() {
                   asChild
                   className='hover:border-glow transition-all bg-transparent'
                 >
-                  <Link href='/dashboard'>
+                  <Link href='/dashboard' target='_blank' rel='noopener noreferrer'>
                     {siteData.features.heroCTAs.secondary}
                   </Link>
                 </Button>
@@ -233,7 +233,7 @@ export default function FeaturesPage() {
                   asChild
                   className='shadow-glow-lg hover:shadow-glow transition-all'
                 >
-                  <Link href='/auth/signup'>
+                  <Link href='/auth/signup' target='_blank' rel='noopener noreferrer'>
                     Start Free Trial <ArrowRight className='ml-2 h-4 w-4' />
                   </Link>
                 </Button>

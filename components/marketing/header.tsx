@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useAuth } from "@/hooks/use-auth";
@@ -14,6 +15,16 @@ import { Logo } from "../ui/logo";
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, loading, signOut } = useAuth();
+  const pathname = usePathname() || "/";
+
+  const navBase = "text-sm font-medium transition-colors";
+  const navActive = "text-foreground font-semibold underline underline-offset-4";
+  const navInactive = "text-muted-foreground hover:text-foreground";
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   return (
     <>
@@ -64,37 +75,49 @@ export function Header() {
           <div className='hidden md:flex items-center gap-6'>
             <Link
               href='/'
-              className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+              className={`${navBase} ${
+                isActive("/") ? navActive : navInactive
+              }`}
             >
               Home
             </Link>
             <Link
               href='/features'
-              className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+              className={`${navBase} ${
+                isActive("/features") ? navActive : navInactive
+              }`}
             >
               Features
             </Link>
             <Link
               href='/pricing'
-              className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+              className={`${navBase} ${
+                isActive("/pricing") ? navActive : navInactive
+              }`}
             >
               Pricing
             </Link>
             <Link
               href='/about'
-              className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+              className={`${navBase} ${
+                isActive("/about") ? navActive : navInactive
+              }`}
             >
               About
             </Link>
             <Link
               href='/blog'
-              className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+              className={`${navBase} ${
+                isActive("/blog") ? navActive : navInactive
+              }`}
             >
               Blog
             </Link>
             <Link
               href='/contact'
-              className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+              className={`${navBase} ${
+                isActive("/contact") ? navActive : navInactive
+              }`}
             >
               Contact
             </Link>
@@ -105,20 +128,38 @@ export function Header() {
             {!loading && !user && (
               <>
                 <Button variant='ghost' asChild>
-                  <Link href='/auth/login'>Login</Link>
+                  <Link
+                    href='/auth/login'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    Login
+                  </Link>
                 </Button>
                 <Button
                   asChild
                   className='shadow-glow hover:shadow-glow-lg transition-all'
                 >
-                  <Link href='/auth/signup'>Get Started</Link>
+                  <Link
+                    href='/auth/signup'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    Get Started
+                  </Link>
                 </Button>
               </>
             )}
             {!loading && user && (
               <>
                 <Button variant='ghost' asChild>
-                  <Link href='/dashboard'>Dashboard</Link>
+                  <Link
+                    href='/dashboard'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    Dashboard
+                  </Link>
                 </Button>
                 <Button
                   variant='ghost'
@@ -161,35 +202,45 @@ export function Header() {
               <div className='container py-4 flex flex-col gap-4'>
                 <Link
                   href='/features'
-                  className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+                  className={`${navBase} ${
+                    isActive("/features") ? navActive : navInactive
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Features
                 </Link>
                 <Link
                   href='/pricing'
-                  className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+                  className={`${navBase} ${
+                    isActive("/pricing") ? navActive : navInactive
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Pricing
                 </Link>
                 <Link
                   href='/about'
-                  className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+                  className={`${navBase} ${
+                    isActive("/about") ? navActive : navInactive
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   About
                 </Link>
                 <Link
                   href='/blog'
-                  className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+                  className={`${navBase} ${
+                    isActive("/blog") ? navActive : navInactive
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Blog
                 </Link>
                 <Link
                   href='/contact'
-                  className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+                  className={`${navBase} ${
+                    isActive("/contact") ? navActive : navInactive
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Contact
@@ -201,6 +252,8 @@ export function Header() {
                       <Button variant='ghost' asChild className='w-full'>
                         <Link
                           href='/auth/login'
+                          target='_blank'
+                          rel='noopener noreferrer'
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           Login
@@ -212,6 +265,8 @@ export function Header() {
                       >
                         <Link
                           href='/auth/signup'
+                          target='_blank'
+                          rel='noopener noreferrer'
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           Get Started
@@ -224,6 +279,8 @@ export function Header() {
                       <Button variant='ghost' asChild className='w-full'>
                         <Link
                           href='/dashboard'
+                          target='_blank'
+                          rel='noopener noreferrer'
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           Dashboard

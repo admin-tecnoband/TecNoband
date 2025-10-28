@@ -49,7 +49,7 @@ export function Sidebar() {
           </div>
           <ThemeToggle />
         </div>
-
+{/* 
         <div className='py-2'>
           <Link
             href='/'
@@ -59,7 +59,7 @@ export function Sidebar() {
             <Home className='h-4 w-4 text-muted-foreground' />
             <span className='text-sm'>Back to home</span>
           </Link>
-        </div>
+        </div> */}
       </div>
 
       {/* User profile (when authenticated) */}

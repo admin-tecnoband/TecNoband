@@ -19,7 +19,6 @@ import {
   Droplets,
   Activity,
 } from "lucide-react";
-import devices from "@/data/iot-devices.json";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -27,8 +26,11 @@ import {
   StaggerItem,
 } from "@/components/animations/stagger-container";
 import { DeviceAiFeatures } from "@/components/dashboard/device-ai-features";
+import { useDevices } from "@/contexts/device-context";
+import { AddDeviceModal } from "@/components/dashboard/add-device-modal";
 
 export default function DevicesPage() {
+  const { devices } = useDevices();
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState<string>("all");
 
@@ -56,10 +58,7 @@ export default function DevicesPage() {
               Manage and monitor all your IoT devices
             </p>
           </div>
-          <Button>
-            <Cpu className='mr-2 h-4 w-4' />
-            Add Device
-          </Button>
+          <AddDeviceModal />
         </motion.div>
 
         {/* Filters */}

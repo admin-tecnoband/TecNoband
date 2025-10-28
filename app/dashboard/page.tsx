@@ -30,7 +30,6 @@ export default function DashboardPage() {
         {/* Header */}
         <div className='flex items-center justify-between gap-6'>
           <div className='flex items-center gap-4'>
-            <Logo />
             <div>
               <h1 className='text-3xl font-bold'>Dashboard</h1>
               <p className='text-muted-foreground'>

@@ -10,7 +10,7 @@ export default function TermsPage() {
               Terms & Conditions
             </h1>
             <p className='text-muted-foreground'>
-              Last updated: January 15, 2024
+              Last updated: January 15, 2025
             </p>
           </div>
 

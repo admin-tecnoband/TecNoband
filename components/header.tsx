@@ -51,17 +51,21 @@ export function Header() {
           {!loading && !user && (
             <>
               <Button variant='ghost' asChild>
-                <Link href='/auth/login'>Login</Link>
+                <Link href='/auth/login' target='_blank' rel='noopener noreferrer'>
+                  Login
+                </Link>
               </Button>
               <Button asChild>
-                <Link href='/auth/signup'>Get Started</Link>
+                <Link href='/auth/signup' target='_blank' rel='noopener noreferrer'>
+                  Get Started
+                </Link>
               </Button>
             </>
           )}
           {!loading && user && (
             <>
               <Button variant='ghost' asChild>
-                <Link href='/dashboard'>Dashboard</Link>
+                <Link href='/dashboard' target='_blank' rel='noopener noreferrer'>Dashboard</Link>
               </Button>
               <Button
                 variant='ghost'
@@ -136,6 +140,8 @@ export function Header() {
                     <Button variant='ghost' asChild className='w-full'>
                       <Link
                         href='/auth/login'
+                        target='_blank'
+                        rel='noopener noreferrer'
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Login
@@ -144,6 +150,8 @@ export function Header() {
                     <Button asChild className='w-full'>
                       <Link
                         href='/auth/signup'
+                        target='_blank'
+                        rel='noopener noreferrer'
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Get Started
@@ -156,6 +164,8 @@ export function Header() {
                     <Button variant='ghost' asChild className='w-full'>
                       <Link
                         href='/dashboard'
+                        target='_blank'
+                        rel='noopener noreferrer'
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Dashboard
