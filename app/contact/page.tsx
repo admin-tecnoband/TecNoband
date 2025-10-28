@@ -600,7 +600,7 @@ export default function ContactPage() {
                 <CardContent className='p-4 relative z-10'>
                   <div className='aspect-video w-full overflow-hidden rounded-lg'>
                     <iframe
-                      src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0198535619877!2d-122.39914368468213!3d37.79245097975753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807c4e3b9c07%3A0x3b0d8f5b5b5b5b5b!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s'
+                      src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.97175544435!2d79.85215817581775!3d6.893981818745519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25bde62372ad5%3A0x285af1a14881d8aa!2s10%20Station%20Rd%2C%20Colombo!5e0!3m2!1sen!2slk!4v1761625126671!5m2!1sen!2slk'
                       width='100%'
                       height='100%'
                       style={{ border: 0 }}
