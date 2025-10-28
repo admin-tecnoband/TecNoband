@@ -134,34 +134,53 @@ export function Sidebar() {
 
       {/* Navigation */}
       <nav className='flex-1 space-y-1 p-4'>
-        {navigation.map((item) => {
-          // Consider a route active if it matches exactly or is a parent path
-          const isActive =
-            pathname === item.href ||
-            (item.href !== "/" && pathname?.startsWith(item.href + "/"));
+        {/*
+          Determine the single best (longest) matching nav item for the current
+          pathname. This prevents the top-level `/dashboard` from always being
+          active when a more specific child route (e.g. `/dashboard/devices`) is active.
+        */}
+        {(() => {
+          const matches = navigation.filter((item) => {
+            if (!pathname) return false;
+            if (item.href === "/") return pathname === "/";
+            return (
+              pathname === item.href || pathname.startsWith(item.href + "/")
+            );
+          });
 
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              aria-current={isActive ? "page" : undefined}
-              className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                isActive
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-              )}
-            >
-              <item.icon
+          // pick the longest href (most specific) if there are multiple matches
+          const bestMatch = matches.sort(
+            (a, b) => b.href.length - a.href.length
+          )[0];
+          const bestHref = bestMatch?.href;
+
+          return navigation.map((item) => {
+            const isActive = item.href === bestHref;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "h-5 w-5 transition-colors",
-                  isActive ? "text-primary-foreground" : "text-muted-foreground"
+                  "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                  isActive
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                 )}
-              />
-              {item.name}
-            </Link>
-          );
-        })}
+              >
+                <item.icon
+                  className={cn(
+                    "h-5 w-5 transition-colors",
+                    isActive
+                      ? "text-primary-foreground"
+                      : "text-muted-foreground"
+                  )}
+                />
+                {item.name}
+              </Link>
+            );
+          });
+        })()}
       </nav>
 
       {/* Sign Out */}
