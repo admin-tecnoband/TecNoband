@@ -76,7 +76,7 @@ function DevicesContent() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <div className='flex flex-warp gap-2'>
+        <div className='flex flex-warp flex-row gap-2'>
           <Button
             variant={filterStatus === "all" ? "default" : "outline"}
             onClick={() => setFilterStatus("all")}

@@ -157,8 +157,8 @@ export default function AnalyticsPage() {
                       </p>
                     </div>
                   </div>
-                  <div className='flex items-center gap-4'>
-                    <div className='w-48 bg-muted rounded-full h-2'>
+                  <div className='flex items-center flex-wrap gap-4'>
+                    <div className='w-20 md:w-48 bg-muted rounded-full h-2'>
                       <div
                         className='bg-primary h-2 rounded-full'
                         style={{
