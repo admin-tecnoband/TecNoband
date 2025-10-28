@@ -106,6 +106,8 @@ export function Footer() {
               <li>
                 <Link
                   href='/dashboard'
+                  target='_blank'
+                  rel='noopener noreferrer'
                   className='text-muted-foreground hover:text-foreground transition-colors'
                 >
                   Dashboard
@@ -114,6 +116,8 @@ export function Footer() {
               <li>
                 <Link
                   href='/auth/signup'
+                  target='_blank'
+                  rel='noopener noreferrer'
                   className='text-muted-foreground hover:text-foreground transition-colors'
                 >
                   Get Started

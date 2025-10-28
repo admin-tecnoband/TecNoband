@@ -7,7 +7,7 @@ export default function PrivacyPage() {
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold">Privacy Policy</h1>
-            <p className="text-muted-foreground">Last updated: January 15, 2024</p>
+            <p className="text-muted-foreground">Last updated: January 15, 2025</p>
           </div>
 
           <div className="prose prose-lg dark:prose-invert max-w-none space-y-8">

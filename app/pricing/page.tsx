@@ -269,7 +269,7 @@ export default function PricingPage() {
             </p>
             <div className='flex gap-4 justify-center flex-wrap'>
               <Button asChild size='lg'>
-                <Link href='/auth/signup'>Start Free Trial</Link>
+                <Link href='/auth/signup' target='_blank' rel='noopener noreferrer'>Start Free Trial</Link>
               </Button>
               <Button asChild variant='outline' size='lg'>
                 <Link href='/contact'>Contact Sales</Link>

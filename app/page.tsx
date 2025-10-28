@@ -120,7 +120,7 @@ export default function HomePage() {
                   asChild
                   className='shadow-glow-lg hover:shadow-glow transition-all'
                 >
-                  <Link href='/auth/signup'>
+                  <Link href='/auth/signup' target='_blank' rel='noopener noreferrer'>
                     {siteData.home.heroCTAs.primary}{" "}
                     <ArrowRight className='ml-2 h-4 w-4' />
                   </Link>
@@ -1083,7 +1083,7 @@ export default function HomePage() {
                   asChild
                   className='shadow-glow-lg hover:shadow-glow transition-all'
                 >
-                  <Link href='/auth/signup'>
+                  <Link href='/auth/signup' target='_blank' rel='noopener noreferrer'>
                     {siteData.home.cta.primary}{" "}
                     <ArrowRight className='ml-2 h-4 w-4' />
                   </Link>
