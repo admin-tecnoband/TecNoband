@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Sidebar } from "./sidebar";
 import { useAuth } from "@/hooks/use-auth";
+import { DeviceProvider } from "@/contexts/device-context";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -29,9 +30,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   if (!user) return null;
 
   return (
-    <div className='flex h-screen overflow-hidden'>
-      <Sidebar />
-      <main className='flex-1 overflow-y-auto bg-background'>{children}</main>
-    </div>
+    <DeviceProvider>
+      <div className='flex h-screen overflow-hidden'>
+        <Sidebar />
+        <main className='flex-1 overflow-y-auto bg-background'>{children}</main>
+      </div>
+    </DeviceProvider>
   );
 }
