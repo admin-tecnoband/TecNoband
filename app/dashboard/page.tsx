@@ -28,7 +28,7 @@ export default function DashboardPage() {
     <DashboardLayout>
       <div className='p-8 space-y-8'>
         {/* Header */}
-        <div className='flex items-center justify-between gap-6'>
+        <div className='flex items-center flex-wrap justify-between gap-6'>
           <div className='flex items-center gap-4'>
             <div>
               <h1 className='text-3xl font-bold'>Dashboard</h1>
