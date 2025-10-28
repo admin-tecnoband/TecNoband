@@ -143,9 +143,7 @@ function DevicesContent() {
               <CardContent className='space-y-4'>
                 <div className='flex items-center justify-between text-sm'>
                   <span className='text-muted-foreground'>Type</span>
-                  <span className='font-medium capitalize'>
-                    {device.type}
-                  </span>
+                  <span className='font-medium capitalize'>{device.type}</span>
                 </div>
 
                 <div className='flex items-center justify-between text-sm'>
@@ -169,9 +167,7 @@ function DevicesContent() {
                       <Thermometer className='h-4 w-4' />
                       Temperature
                     </span>
-                    <span className='font-medium'>
-                      {device.temperature}°C
-                    </span>
+                    <span className='font-medium'>{device.temperature}°C</span>
                   </div>
                 )}
 

@@ -49,7 +49,7 @@ export function Sidebar() {
           </div>
           <ThemeToggle />
         </div>
-{/* 
+        {/* 
         <div className='py-2'>
           <Link
             href='/'
@@ -135,11 +135,16 @@ export function Sidebar() {
       {/* Navigation */}
       <nav className='flex-1 space-y-1 p-4'>
         {navigation.map((item) => {
-          const isActive = pathname === item.href;
+          // Consider a route active if it matches exactly or is a parent path
+          const isActive =
+            pathname === item.href ||
+            (item.href !== "/" && pathname?.startsWith(item.href + "/"));
+
           return (
             <Link
               key={item.name}
               href={item.href}
+              aria-current={isActive ? "page" : undefined}
               className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                 isActive
@@ -147,7 +152,12 @@ export function Sidebar() {
                   : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
               )}
             >
-              <item.icon className='h-5 w-5' />
+              <item.icon
+                className={cn(
+                  "h-5 w-5 transition-colors",
+                  isActive ? "text-primary-foreground" : "text-muted-foreground"
+                )}
+              />
               {item.name}
             </Link>
           );
