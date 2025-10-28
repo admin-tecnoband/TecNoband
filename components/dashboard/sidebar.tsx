@@ -25,7 +25,12 @@ const navigation = [
   { name: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+export function Sidebar({ open = false, onOpenChange }: SidebarProps = {}) {
   const pathname = usePathname();
   const { user, signOut } = useAuth();
   const router = useRouter();
@@ -35,7 +40,14 @@ export function Sidebar() {
     router.push("/");
   };
 
-  return (
+  const handleLinkClick = () => {
+    // Close mobile menu when a link is clicked
+    if (onOpenChange) {
+      onOpenChange(false);
+    }
+  };
+
+  const SidebarContent = () => (
     <div className='flex h-full w-64 flex-col border-r border-border bg-card'>
       {/* Logo */}
       <div className='flex flex-col border-b border-border px-4 py-3'>
@@ -160,6 +172,7 @@ export function Sidebar() {
               <Link
                 key={item.name}
                 href={item.href}
+                onClick={handleLinkClick}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
                   "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
@@ -195,5 +208,31 @@ export function Sidebar() {
         </Button>
       </div>
     </div>
+  );
+
+  return (
+    <>
+      {/* Desktop sidebar - always visible on md+ screens */}
+      <div className='hidden md:block'>
+        <SidebarContent />
+      </div>
+
+      {/* Mobile sidebar - drawer with backdrop */}
+      {open && (
+        <>
+          {/* Backdrop */}
+          <div
+            className='fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden'
+            onClick={() => onOpenChange?.(false)}
+            aria-hidden='true'
+          />
+
+          {/* Sliding drawer */}
+          <div className='fixed inset-y-0 left-0 z-50 md:hidden'>
+            <SidebarContent />
+          </div>
+        </>
+      )}
+    </>
   );
 }
