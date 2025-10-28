@@ -11,8 +11,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Activity, Cpu, AlertTriangle, CheckCircle2 } from "lucide-react";
 import devices from "@/data/iot-devices.json";
-import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
+import { AddDeviceModal } from "@/components/dashboard/add-device-modal";
 import { useState } from "react";
 import { OverviewAiFeatures } from "@/components/dashboard/overview-ai-features";
 
@@ -45,11 +45,7 @@ export default function DashboardPage() {
             <Button variant='ghost' onClick={() => setRefetch((s) => s + 1)}>
               Refresh
             </Button>
-            <Button
-              onClick={() => alert("Open Add Device modal (not implemented)")}
-            >
-              Add Device
-            </Button>
+            <AddDeviceModal />
           </div>
         </div>
 
