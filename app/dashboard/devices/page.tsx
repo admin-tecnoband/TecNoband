@@ -65,9 +65,9 @@ function DevicesContent() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}
-        className='flex gap-4'
+        className='flex flex-col md:flex-row flex-wrap gap-4'
       >
-        <div className='relative flex-1'>
+        <div className='relative'>
           <Search className='absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
           <Input
             placeholder='Search devices...'
@@ -76,7 +76,7 @@ function DevicesContent() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <div className='flex gap-2'>
+        <div className='flex flex-warp gap-2'>
           <Button
             variant={filterStatus === "all" ? "default" : "outline"}
             onClick={() => setFilterStatus("all")}

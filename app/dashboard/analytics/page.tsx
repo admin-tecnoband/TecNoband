@@ -147,7 +147,7 @@ export default function AnalyticsPage() {
               {devices.slice(0, 6).map((device) => (
                 <div
                   key={device.id}
-                  className='flex items-center justify-between'
+                  className='flex items-center flex-wrap justify-between'
                 >
                   <div className='flex items-center gap-4'>
                     <div className='w-32 truncate'>
